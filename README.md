@@ -38,6 +38,16 @@ Magento CE(EE) 2.0.x, 2.1.x, 2.2.x
 	php bin/magento setup:di:compile
 	php bin/magento setup:static-content:deploy  (optional)
 
+### Sequence Manager
+
+In the Magento Admin Panel go to *Stores > Sequence Profiles*.
+
+<img alt="Magento2 Sales Sequence" src="https://karliuka.github.io/m2/sales-sequence/sequence.png" style="width:100%"/>
+
+Custom Order Number
+
+<img alt="Magento2 Custom Order Number" src="https://karliuka.github.io/m2/sales-sequence/order.png" style="width:100%"/>	
+	
 ## Uninstall
 This works only with modules defined as Composer packages.
 
