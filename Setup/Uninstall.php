@@ -11,7 +11,7 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 
 /**
- * SmartCategory Uninstall
+ * Uninstall
  */
 class Uninstall implements UninstallInterface
 {
