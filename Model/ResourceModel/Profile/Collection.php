@@ -58,7 +58,7 @@ class Collection extends AbstractCollection
     {
         parent::_initSelect();
         $this->getSelect()->join(
-            ['meta' => 'sales_sequence_meta'],
+            ['meta' => $this->getResource()->getTable('sales_sequence_meta')],
             'main_table.meta_id = meta.meta_id',
             ['meta.entity_type', 'meta.store_id']
         );          
