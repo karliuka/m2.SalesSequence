@@ -28,9 +28,10 @@ class InstallSchema implements InstallSchemaInterface
     {
         $installer = $setup;
         $installer->startSetup();
+        $salesSequenceProfileTableName = $installer->getTable('sales_sequence_profile');
         $connection = $installer->getConnection();
         $connection->addColumn(
-            'sales_sequence_profile',
+            $salesSequenceProfileTableName,
             'pattern',
             [
                 'type' => Table::TYPE_TEXT,
@@ -38,7 +39,7 @@ class InstallSchema implements InstallSchemaInterface
                 'default' => null,
                 'comment' => 'Profile Pattern'
             ]
-        ); 
+        );
         $installer->endSetup();
     }
 }
