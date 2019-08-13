@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 namespace Faonni\SalesSequence\Setup;
@@ -16,7 +16,7 @@ use Magento\Framework\Setup\SchemaSetupInterface;
 class Uninstall implements UninstallInterface
 {
     /**
-     * Uninstall DB Schema
+     * Uninstall DB schema
      *
      * @param SchemaSetupInterface $setup
      * @param ModuleContextInterface $context
@@ -25,21 +25,21 @@ class Uninstall implements UninstallInterface
     public function uninstall(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $setup->startSetup();
-		$this->removeColumns($setup);
+        $this->removeColumns($setup);
         $setup->endSetup();
     }
 
     /**
-     * Remove Columns
-	 *
+     * Remove columns
+     *
      * @param SchemaSetupInterface $setup
      * @return void
      */
-    private function removeColumns(SchemaSetupInterface $setup)
+    protected function removeColumns(SchemaSetupInterface $setup)
     {
         $setup->getConnection()->dropColumn(
-			$setup->getTable('sales_sequence_profile'), 
-			'pattern'
-		);
-    }   
+            $setup->getTable('sales_sequence_profile'),
+            'pattern'
+        );
+    }
 }

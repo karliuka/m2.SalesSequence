@@ -6,8 +6,8 @@
  * See COPYING.txt for license details.
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
             <block class="Faonni\SalesSequence\Block\Adminhtml\Profile" name="sales_sequence_profile.grid.container">
@@ -29,54 +29,54 @@
                             </argument>
                             <argument name="filter_visibility" xsi:type="string">1</argument>
                         </arguments>
-                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="sales_sequence_profile.grid.columnSet.entity_type" as="entity_type">
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="entity_type" as="entity_type">
                             <arguments>
                                 <argument name="header" xsi:type="string" translate="true">Entity Type</argument>
                                 <argument name="index" xsi:type="string">entity_type</argument>
-								<argument name="filter_index" xsi:type="string">meta.entity_type</argument>
+                                <argument name="filter_index" xsi:type="string">meta.entity_type</argument>
                             </arguments>
-                        </block>	
-						<block class="Magento\Backend\Block\Widget\Grid\Column\Multistore" name="sales_sequence_profile.grid.columnSet.store" as="store">
-							<arguments>
-								<argument name="header" xsi:type="string" translate="true">Store View</argument>
-								<argument name="index" xsi:type="string">store_id</argument>
-								<argument name="type" xsi:type="string">options</argument>
-								<argument name="options" xsi:type="options" model="Faonni\SalesSequence\Block\Adminhtml\Profile\Grid\Options\StoreOptionHash"/>
-								<argument name="header_css_class" xsi:type="string">col-store-view</argument>
-								<argument name="column_css_class" xsi:type="string">col-store-view</argument>
-							</arguments>
-						</block>						
-                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="sales_sequence_profile.grid.columnSet.prefix" as="prefix">
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column\Multistore" name="store" as="store">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Store View</argument>
+                                <argument name="index" xsi:type="string">store_id</argument>
+                                <argument name="type" xsi:type="string">options</argument>
+                                <argument name="options" xsi:type="options" model="Faonni\SalesSequence\Block\Adminhtml\Profile\Grid\Options\StoreOptionHash"/>
+                                <argument name="header_css_class" xsi:type="string">col-store-view</argument>
+                                <argument name="column_css_class" xsi:type="string">col-store-view</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="prefix" as="prefix">
                             <arguments>
                                 <argument name="header" xsi:type="string" translate="true">Prefix</argument>
                                 <argument name="index" xsi:type="string">prefix</argument>
                             </arguments>
-                        </block>						
-                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="sales_sequence_profile.grid.columnSet.suffix" as="suffix">
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="suffix" as="suffix">
                             <arguments>
                                 <argument name="header" xsi:type="string" translate="true">Suffix</argument>
                                 <argument name="index" xsi:type="string">suffix</argument>
                             </arguments>
-                        </block>  						
-						<block class="Magento\Backend\Block\Widget\Grid\Column" name="sales_sequence_profile.grid.columnSet.start_value" as="start_value">
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="start_value" as="start_value">
                             <arguments>
                                 <argument name="header" xsi:type="string" translate="true">Start Value</argument>
                                 <argument name="index" xsi:type="string">start_value</argument>
                             </arguments>
-                        </block>						
-                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="sales_sequence_profile.grid.columnSet.max_value" as="max_value">
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="max_value" as="max_value">
                             <arguments>
                                 <argument name="header" xsi:type="string" translate="true">Max Value</argument>
                                 <argument name="index" xsi:type="string">max_value</argument>
                             </arguments>
                         </block>
-                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="sales_sequence_profile.grid.columnSet.warning_value" as="warning_value">
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="warning_value" as="warning_value">
                             <arguments>
                                 <argument name="header" xsi:type="string" translate="true">Warning Value</argument>
                                 <argument name="index" xsi:type="string">warning_value</argument>
                             </arguments>
                         </block>
-                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="sales_sequence_profile.grid.columnSet.step" as="step">
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="step" as="step">
                             <arguments>
                                 <argument name="header" xsi:type="string" translate="true">Step</argument>
                                 <argument name="index" xsi:type="string">step</argument>
@@ -87,24 +87,24 @@
                                 <argument name="header" xsi:type="string" translate="true">Pattern</argument>
                                 <argument name="index" xsi:type="string">pattern</argument>
                             </arguments>
-                        </block>						
-						<block class="Magento\Backend\Block\Widget\Grid\Column" name="sales_sequence_profile.grid.columnSet.is_active" as="is_active">
-							<arguments>
-								<argument name="header" xsi:type="string" translate="true">Status</argument>
-								<argument name="type" xsi:type="string">options</argument>
-								<argument name="options" xsi:type="array">
-									<item name="active" xsi:type="array">
-										<item name="value" xsi:type="string">1</item>
-										<item name="label" xsi:type="string" translate="true">Active</item>
-									</item>
-									<item name="inactive" xsi:type="array">
-										<item name="value" xsi:type="string">0</item>
-										<item name="label" xsi:type="string" translate="true">Inactive</item>
-									</item>
-								</argument>
-								<argument name="index" xsi:type="string">is_active</argument>
-							</arguments>
-						</block>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" name="sales_sequence_profile.grid.columnSet.is_active" as="is_active">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Status</argument>
+                                <argument name="type" xsi:type="string">options</argument>
+                                <argument name="options" xsi:type="array">
+                                    <item name="active" xsi:type="array">
+                                        <item name="value" xsi:type="string">1</item>
+                                        <item name="label" xsi:type="string" translate="true">Active</item>
+                                    </item>
+                                    <item name="inactive" xsi:type="array">
+                                        <item name="value" xsi:type="string">0</item>
+                                        <item name="label" xsi:type="string" translate="true">Inactive</item>
+                                    </item>
+                                </argument>
+                                <argument name="index" xsi:type="string">is_active</argument>
+                            </arguments>
+                        </block>
                     </block>
                 </block>
             </block>

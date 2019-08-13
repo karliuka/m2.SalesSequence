@@ -9,7 +9,7 @@ namespace Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile;
 use Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile as AbstractController;
 
 /**
- * Profile Index Controller
+ * Profile index controller
  */
 class Index extends AbstractController
 {
@@ -22,8 +22,12 @@ class Index extends AbstractController
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu(self::ACTIVE_MENU);
-        $resultPage->getConfig()->getTitle()->prepend(__('Sequence Profiles'));
+        $resultPage->setActiveMenu(
+            'Faonni_Sequence::profile'
+        );
+        $resultPage->getConfig()->getTitle()->prepend(
+            __('Sequence Profiles')
+        );
 
         return $resultPage;
     }

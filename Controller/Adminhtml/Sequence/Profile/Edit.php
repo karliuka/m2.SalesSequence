@@ -9,7 +9,7 @@ namespace Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile;
 use Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile as AbstractController;
 
 /**
- * Profile Edit Controller
+ * Profile edit controller
  */
 class Edit extends AbstractController
 {
@@ -20,22 +20,28 @@ class Edit extends AbstractController
      */
     public function execute()
     {
-        $profile = $this->_initProfile();
+        $profile = $this->initProfile();
         if ($profile) {
-            $this->_coreRegistry->register(
-				'current_sequence_profile', 
-				$profile
-			);
+            $this->coreRegistry->register(
+                'current_sequence_profile',
+                $profile
+            );
             /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
             $resultPage = $this->resultPageFactory->create();
-            $resultPage->setActiveMenu(self::ACTIVE_MENU);
-            $resultPage->getConfig()->getTitle()->prepend(__('Save Profile'));
-            $resultPage->getConfig()->getTitle()->prepend(__('Edit Profile'));
+            $resultPage->setActiveMenu(
+                'Faonni_Sequence::profile'
+            );
+            $resultPage->getConfig()->getTitle()->prepend(
+                __('Sequence Profiles')
+            );
+            $resultPage->getConfig()->getTitle()->prepend(
+                __('Edit Profile')
+            );
             return $resultPage;
         } else {
             $this->messageManager->addError(
-				__('We can\'t find this sequence profile.')
-			);
+                __('We can\'t find this sequence profile.')
+            );
             /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
             $resultRedirect = $this->resultRedirectFactory->create();
             return $resultRedirect->setPath('sales/');

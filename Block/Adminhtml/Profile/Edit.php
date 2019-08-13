@@ -9,13 +9,15 @@ namespace Faonni\SalesSequence\Block\Adminhtml\Profile;
 use Magento\Backend\Block\Widget\Form\Container;
 
 /**
- * Sequence Profile Edit
+ * Sequence profile edit
+ *
+ * @api
  */
 class Edit extends Container
 {
     /**
-     * Initialize Container
-	 *
+     * Initialize container
+     *
      * @return void
      */
     protected function _construct()
@@ -32,7 +34,7 @@ class Edit extends Container
     /**
      * Retrieve text for header element depending on loaded page
      *
-     * @return \Magento\Framework\Phrase
+     * @return string
      */
     public function getHeaderText()
     {

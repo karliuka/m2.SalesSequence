@@ -14,74 +14,62 @@ use Magento\SalesSequence\Model\ProfileFactory;
 use Magento\SalesSequence\Model\MetaFactory;
 
 /**
- * Sequence Profile Controller
+ * Sequence profile controller
  */
 abstract class Profile extends Action
 {
     /**
-     * Authorization level of a basic admin session
-     *
-     * @see _isAllowed()
-     */
-    const ADMIN_RESOURCE = 'Faonni_Sequence::profile';
-	
-    /**
-     * Active Menu Path
-     */
-    const ACTIVE_MENU = 'Faonni_Sequence::profile';
-	
-    /**
      * Core registry
      *
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
-    protected $_coreRegistry;
-	
+    protected $coreRegistry;
+
     /**
-     * Sequence Profile
+     * Sequence profile
      *
-     * @var \Magento\SalesSequence\Model\Profile
+     * @var ProfileFactory
      */
-    protected $_profile;
-    
+    protected $profileFactory;
+
     /**
-     * Sequence Meta
+     * Sequence meta
      *
-     * @var \Magento\SalesSequence\Model\Meta
+     * @var MetaFactory
      */
-    protected $_meta;
-    
+    protected $metaFactory;
+
     /**
      * Result Page Factory
      *
      * @var PageFactory
      */
     protected $resultPageFactory;
-    
+
     /**
-     * Initialize Controller
-	 *
+     * Initialize controller
+     *
      * @param Context $context
      * @param Registry $coreRegistry
      * @param ProfileFactory $profileFactory
-     * @param MetaFactory $metaFactory 
-     * @param PageFactory $resultPageFactory     
+     * @param MetaFactory $metaFactory
+     * @param PageFactory $resultPageFactory
      */
     public function __construct(
         Context $context,
         Registry $coreRegistry,
-		ProfileFactory $profileFactory,
-		MetaFactory $metaFactory,
-		PageFactory $resultPageFactory
+        ProfileFactory $profileFactory,
+        MetaFactory $metaFactory,
+        PageFactory $resultPageFactory
     ) {
-        $this->_coreRegistry = $coreRegistry;
-		$this->_profile = $profileFactory->create();
-		$this->_meta = $metaFactory->create();
-		$this->resultPageFactory = $resultPageFactory;
-		
+        $this->coreRegistry = $coreRegistry;
+        $this->profileFactory = $profileFactory;
+        $this->metaFactory = $metaFactory;
+        $this->resultPageFactory = $resultPageFactory;
+
         parent::__construct(
-			$context
-		);
+            $context
+        );
     }
 
     /**
@@ -89,18 +77,30 @@ abstract class Profile extends Action
      *
      * @return \Magento\SalesSequence\Model\Profile|false
      */
-    protected function _initProfile()
+    protected function initProfile()
     {
         $profileId = $this->getRequest()->getParam('profile_id');
         if ($profileId) {
-			$profile = $this->_profile->load($profileId);
-			if ($profile) {
-				$meta = $this->_meta->load($profile->getMetaId());
-				$profile->setData('entity_type', $meta->getEntityType());
-				$profile->setData('store_id', $meta->getStoreId());
-				return $profile;			
-			}
+            $profile = $this->profileFactory->create()->load($profileId);
+            if ($profile) {
+                $meta = $this->metaFactory->create()->load($profile->getMetaId());
+                $profile->setData('entity_type', $meta->getEntityType());
+                $profile->setData('store_id', $meta->getStoreId());
+                return $profile;
+            }
         }
         return false;
+    }
+
+    /**
+     * Check current user permission on resource and privilege
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed(
+            'Faonni_Sequence::profile'
+        );
     }
 }

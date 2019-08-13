@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 namespace Faonni\SalesSequence\Setup;
@@ -13,7 +13,7 @@ use Magento\Framework\DB\Ddl\Table;
 use Magento\SalesSequence\Model\Sequence;
 
 /**
- * Install Schema
+ * Install schema
  */
 class InstallSchema implements InstallSchemaInterface
 {

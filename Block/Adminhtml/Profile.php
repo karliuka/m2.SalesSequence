@@ -9,13 +9,15 @@ namespace Faonni\SalesSequence\Block\Adminhtml;
 use Magento\Backend\Block\Widget\Grid\Container;
 
 /**
- * Sequence Profile
+ * Profile container
+ *
+ * @api
  */
 class Profile extends Container
 {
     /**
-     * Initialize Container
-	 *
+     * Initialize container
+     *
      * @return void
      */
     protected function _construct()

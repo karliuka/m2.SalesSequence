@@ -13,24 +13,24 @@ use Magento\Backend\Block\Template\Context;
 use Faonni\SalesSequence\Block\Adminhtml\Profile\Grid\Options\StoreOptionHash;
 
 /**
- * Sequence Profile Form
+ * Profile form
  */
 class Form extends FormGeneric
 {
     /**
-     * Store Option
+     * Store option
      *
-     * @var \Faonni\SalesSequence\Block\Adminhtml\Profile\Grid\Options\StoreOptionHash
+     * @var StoreOptionHash
      */
-    protected $_storeOption;
-    
+    protected $storeOption;
+
     /**
-     * Initialize Form
-	 *
+     * Initialize form
+     *
      * @param Context $context
      * @param Registry $registry
      * @param FormFactory $formFactory
-     * @param StoreOptionHash $storeOption    
+     * @param StoreOptionHash $storeOption
      * @param array $data
      */
     public function __construct(
@@ -40,27 +40,16 @@ class Form extends FormGeneric
         StoreOptionHash $storeOption,
         array $data = []
     ) {
-        $this->_storeOption = $storeOption;
+        $this->storeOption = $storeOption;
 
         parent::__construct(
-			$context, 
-			$registry, 
-			$formFactory, 
-			$data
-		);
+            $context,
+            $registry,
+            $formFactory,
+            $data
+        );
     }
-    
-    /**
-     * Initialize Form
-	 *
-     * @return void
-     */
-    protected function _construct()
-    {
-        parent::_construct();
-        $this->setId('sequence_profile');
-    }	
-	
+
     /**
      * Prepare form fields and structure
      *
@@ -71,24 +60,24 @@ class Form extends FormGeneric
         $model = $this->_coreRegistry->registry('current_sequence_profile');
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(['data' => [
-			'id' => 'edit_form', 
-			'action' => $this->getData('action'), 
-			'method' => 'post']
-		]);
+            'id' => 'edit_form',
+            'action' => $this->getData('action'),
+            'method' => 'post']
+        ]);
 
         $fieldset = $form->addFieldset(
-			'base_fieldset', 
-			['legend' => __('Profile Information')]
-		);
-		
-		$fieldset->addField(
-			'profile_id', 
-			'hidden',
-			[
-				'name' => 'profile_id'
-			]
-		);
-		
+            'base_fieldset',
+            ['legend' => __('Profile Information')]
+        );
+
+        $fieldset->addField(
+            'profile_id',
+            'hidden',
+            [
+                'name' => 'profile_id'
+            ]
+        );
+
         $fieldset->addField(
             'entity_type',
             'text',
@@ -98,18 +87,18 @@ class Form extends FormGeneric
                 'disabled' => true
             ]
         );
-        
+
         $fieldset->addField(
             'store_id',
             'select',
             [
                 'name' => 'store_id',
                 'label' => __('Store View'),
-                'options' => $this->_storeOption->toOptionArray(),
+                'options' => $this->storeOption->toOptionArray(),
                 'disabled' => true
             ]
         );
-        
+
         $fieldset->addField(
             'prefix',
             'text',
@@ -118,7 +107,7 @@ class Form extends FormGeneric
                 'label' => __('Prefix')
             ]
         );
-        
+
         $fieldset->addField(
             'suffix',
             'text',
@@ -127,7 +116,7 @@ class Form extends FormGeneric
                 'label' => __('Suffix')
             ]
         );
-        
+
         $fieldset->addField(
             'start_value',
             'text',
@@ -138,7 +127,7 @@ class Form extends FormGeneric
                 'required' => true
             ]
         );
-        
+
         $fieldset->addField(
             'max_value',
             'text',
@@ -149,7 +138,7 @@ class Form extends FormGeneric
                 'required' => true
             ]
         );
-        
+
         $fieldset->addField(
             'warning_value',
             'text',
@@ -160,7 +149,7 @@ class Form extends FormGeneric
                 'required' => true
             ]
         );
-        
+
         $fieldset->addField(
             'step',
             'text',
@@ -171,7 +160,7 @@ class Form extends FormGeneric
                 'required' => true
             ]
         );
-        
+
         $fieldset->addField(
             'pattern',
             'text',
@@ -180,7 +169,7 @@ class Form extends FormGeneric
                 'label' => __('Pattern')
             ]
         );
-        
+
         $fieldset->addField(
             'is_active',
             'select',
@@ -190,7 +179,7 @@ class Form extends FormGeneric
                 'options' => ['1' => __('Active'), '0' => __('Inactive')]
             ]
         );
-        
+
         if ($model) {
             $form->addValues($model->getData());
         }
