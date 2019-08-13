@@ -2,7 +2,7 @@
     "name": "faonni/module-sales-sequence",
     "description": "Extension change format IncrementID for orders, invoices, creditmemos and shipments.",
     "type": "magento2-module",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "authors": [{
         "name": "Karliuka Vitalii",
         "email": "karliuka.vitalii@gmail.com"
