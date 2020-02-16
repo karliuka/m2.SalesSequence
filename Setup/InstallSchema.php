@@ -13,7 +13,7 @@ use Magento\Framework\DB\Ddl\Table;
 use Magento\SalesSequence\Model\Sequence;
 
 /**
- * Install schema
+ * Install sales sequence
  */
 class InstallSchema implements InstallSchemaInterface
 {

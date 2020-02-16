@@ -6,29 +6,28 @@
  */
 namespace Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile;
 
-use Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile as AbstractController;
+use Magento\Framework\App\ResponseInterface;
+use Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile as Action;
 
 /**
  * Profile index controller
  */
-class Index extends AbstractController
+class Index extends Action
 {
     /**
      * Profile grid page
      *
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @return ResponseInterface
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
-        $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu(
+        $this->_view->loadLayout();
+        $this->_setActiveMenu(
             'Faonni_Sequence::profile'
         );
-        $resultPage->getConfig()->getTitle()->prepend(
+        $this->_view->getPage()->getConfig()->getTitle()->prepend(
             __('Sequence Profiles')
         );
-
-        return $resultPage;
+        $this->_view->renderLayout();
     }
 }

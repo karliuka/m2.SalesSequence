@@ -183,7 +183,7 @@ class Form extends FormGeneric
         if ($model) {
             $form->addValues($model->getData());
         }
-        $form->setAction($this->getUrl('sales/sequence_profile/save'));
+
         $form->setUseContainer(true);
         $this->setForm($form);
 

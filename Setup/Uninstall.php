@@ -11,7 +11,7 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 
 /**
- * Uninstall
+ * Uninstall sales sequence
  */
 class Uninstall implements UninstallInterface
 {

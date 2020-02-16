@@ -22,12 +22,23 @@ class Edit extends Container
      */
     protected function _construct()
     {
-        $this->_objectId = 'profile';
+        $this->_objectId = 'id';
         $this->_controller = 'adminhtml_profile';
         $this->_blockGroup = 'Faonni_SalesSequence';
-        $this->_mode = 'edit';
 
         parent::_construct();
+
+        $this->buttonList->add(
+            'save_and_continue_edit',
+            [
+                'class' => 'save',
+                'label' => __('Save and Continue Edit'),
+                'data_attribute' => [
+                    'mage-init' => ['button' => ['event' => 'saveAndContinueEdit', 'target' => '#edit_form']],
+                ]
+            ],
+            3
+        );
     }
 
     /**
