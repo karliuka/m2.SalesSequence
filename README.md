@@ -4,7 +4,7 @@ Extension change format IncrementID for orders, invoices, credit memos and shipm
 
 ## Compatibility
 
-Magento CE(EE) 2.0.x, 2.1.x, 2.2.x
+Magento CE(EE) 2.0.x, 2.1.x, 2.2.x, 2.3.x
 
 ## Install
 
