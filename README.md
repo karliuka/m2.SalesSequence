@@ -14,9 +14,18 @@ Magento CE(EE) 2.0.x, 2.1.x, 2.2.x
 
 2. Enter following commands to install module:
 
+
+    For Magento CE(EE) 2.0.x, 2.1.x, 2.2.x
+
     ```bash
-    composer require faonni/module-sales-sequence
+    composer require faonni/module-sales-sequence:2.0.*
     ```
+
+    For Magento CE(EE) 2.3.x
+
+    ```bash
+    composer require faonni/module-sales-sequence:2.3.*
+
    Wait while dependencies are updated.
 
 #### Manual Installation
