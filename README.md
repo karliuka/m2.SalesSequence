@@ -4,7 +4,7 @@ Extension change format IncrementID for orders, invoices, credit memos and shipm
 
 ## Compatibility
 
-Magento CE(EE) 2.0.x, 2.1.x, 2.2.x, 2.3.x
+Magento CE(EE) 2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x
 
 ## Install
 
@@ -25,6 +25,12 @@ Magento CE(EE) 2.0.x, 2.1.x, 2.2.x, 2.3.x
 
     ```bash
     composer require faonni/module-sales-sequence:2.3.*
+    ```
+
+    For Magento CE(EE) 2.4.x
+
+    ```bash
+    composer require faonni/module-sales-sequence:2.4.*
     ```
 
    Wait while dependencies are updated.
