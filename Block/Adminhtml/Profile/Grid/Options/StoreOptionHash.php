@@ -34,7 +34,7 @@ class StoreOptionHash implements OptionInterface
     /**
      * Return store array
      *
-     * @return array
+     * @return mixed[]
      */
     public function toOptionArray()
     {

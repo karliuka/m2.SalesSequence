@@ -19,29 +19,21 @@ use Psr\Log\LoggerInterface;
 abstract class Profile extends Action
 {
     /**
-     * Core registry
-     *
      * @var Registry
      */
     protected $coreRegistry;
 
     /**
-     * Sequence profile
-     *
      * @var ProfileFactory
      */
     protected $profileFactory;
 
     /**
-     * Sequence meta
-     *
      * @var MetaFactory
      */
     protected $metaFactory;
 
     /**
-     * Logger
-     *
      * @var LoggerInterface
      */
     protected $logger;
@@ -83,7 +75,7 @@ abstract class Profile extends Action
         $profileId = $this->getRequest()->getParam('profile_id');
         if ($profileId) {
             $profile = $this->profileFactory->create()->load($profileId);
-            if ($profile) {
+            if ($profile->getId()) {
                 $meta = $this->metaFactory->create()->load(
                     $profile->getMetaId()
                 );
