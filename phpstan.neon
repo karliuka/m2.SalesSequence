@@ -1,0 +1,16 @@
+parameters:
+    checkExplicitMixedMissingReturn: true
+    checkPhpDocMissingReturn: true
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#return type has no value type specified in iterable type \$this\(Faonni\\SalesSequence\\Model\\ResourceModel\\Profile\\Collection\).#'
+        - '#Call to an undefined method Magento\\SalesSequence\\Model\\Meta::getActiveProfile\(\).#'
+        - '#Call to an undefined method Magento\\SalesSequence\\Model\\Meta::getEntityType\(\).#'
+        - '#Call to an undefined method Magento\\SalesSequence\\Model\\Meta::getStoreId\(\).#'
+        - '#Call to an undefined method Magento\\Framework\\App\\RequestInterface::getPostValue\(\).#'
+        - '#Call to an undefined method Magento\\SalesSequence\\Model\\Profile::getMetaId\(\).#'
+        - '#Call to an undefined method Magento\\Framework\\Data\\Form::setUseContainer\(\).#'
+        - '#Call to an undefined method Magento\\Backend\\Model\\Session::setProfileData\(\).#'
+        - '#Call to an undefined method Magento\\Backend\\Model\\Session::getProfileData\(\).#'
+        - '#Call to an undefined method Magento\\Backend\\Block\\Widget\\Form::addFieldset\(\).#'
+        - '#Call to an undefined method Magento\\Backend\\Block\\Widget\\Form::addValues\(\).#'

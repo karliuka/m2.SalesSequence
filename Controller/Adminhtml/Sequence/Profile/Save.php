@@ -22,11 +22,10 @@ class Save extends Action
     public function execute()
     {
         $id = $this->getRequest()->getParam('profile_id');
+        $back = $this->getRequest()->getParam('back', false);
         $data = $this->getRequest()->getPostValue();
         if ($data) {
             try {
-                $back = $this->getRequest()->getParam('back', false);
-
                 $profile = $this->initProfile();
 
                 unset($data['meta_id']);
