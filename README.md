@@ -1,5 +1,8 @@
 # Magento2 SalesSequence
 
+[![Total Downloads](https://poser.pugx.org/faonni/module-sales-sequence/downloads)](https://packagist.org/packages/faonni/module-sales-sequence)
+[![Latest Stable Version](https://poser.pugx.org/faonni/module-sales-sequence/v/stable)](https://packagist.org/packages/faonni/module-sales-sequence)
+
 Extension change format IncrementID for orders, invoices, credit memos and shipments.
 
 ## Compatibility
