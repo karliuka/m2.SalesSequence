@@ -21,22 +21,22 @@ abstract class Profile extends Action
     /**
      * @var Registry
      */
-    protected $coreRegistry;
+    private $coreRegistry;
 
     /**
      * @var ProfileFactory
      */
-    protected $profileFactory;
+    private $profileFactory;
 
     /**
      * @var MetaFactory
      */
-    protected $metaFactory;
+    private $metaFactory;
 
     /**
      * @var LoggerInterface
      */
-    protected $logger;
+    private $logger;
 
     /**
      * Initialize controller

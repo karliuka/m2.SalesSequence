@@ -14,11 +14,9 @@ use Magento\Store\Model\System\Store;
 class StoreOptionHash implements OptionInterface
 {
     /**
-     * System store
-     *
      * @var Store
      */
-    protected $systemStore;
+    private $systemStore;
 
     /**
      * Initialize block
