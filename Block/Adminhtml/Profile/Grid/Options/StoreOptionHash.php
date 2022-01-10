@@ -14,11 +14,9 @@ use Magento\Store\Model\System\Store;
 class StoreOptionHash implements OptionInterface
 {
     /**
-     * System store
-     *
      * @var Store
      */
-    protected $systemStore;
+    private $systemStore;
 
     /**
      * Initialize block
@@ -34,7 +32,7 @@ class StoreOptionHash implements OptionInterface
     /**
      * Return store array
      *
-     * @return array
+     * @return mixed[]
      */
     public function toOptionArray()
     {

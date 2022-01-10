@@ -5,7 +5,8 @@
  */
 namespace Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile;
 
-use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile as Action;
 
@@ -15,62 +16,30 @@ use Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile as Action;
 class Edit extends Action
 {
     /**
-     * Init active menu and set breadcrumb
-     *
-     * @return $this
-     */
-    protected function initAction()
-    {
-        $this->_view->loadLayout();
-        $this->_view->getPage()->getConfig()->getTitle()->prepend(
-            __('Sequence Profiles')
-        );
-
-        $this->_setActiveMenu(
-            'Faonni_Sequence::profile'
-        )->_addBreadcrumb(
-            __('Sequence Profiles'),
-            __('Sequence Profiles')
-        );
-        return $this;
-    }
-
-    /**
      * Editing existing profile form
      *
-     * @return ResponseInterface
+     * @return ResultInterface
      */
     public function execute()
     {
+        /** @var \Magento\Backend\Model\View\Result\Page $result */
+        $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        $result->setActiveMenu('Faonni_Sequence::profile');
         try {
             $profile = $this->initProfile();
+            $data = $this->_session->getProfileData(true);
+            if (!empty($data)) {
+                $profile->addData($data);
+            }
+            $title = $result->getConfig()->getTitle();
+            $title->prepend((string)__('Sequence Profiles'));
+            $title->prepend((string)__('Edit Profiles'));
         } catch (LocalizedException $e) {
-            $this->messageManager->addError(
-                $e->getMessage()
-            );
-            return $this->_redirect('*/*/*');
-        } catch (\Exception $e) {
-            $this->logger->critical($e);
-            return $this->_redirect('*/*/');
+            $this->messageManager->addError($e->getMessage());
+            /** @var \Magento\Framework\Controller\Result\Redirect $result */
+            $result = $this->resultRedirectFactory->create();
+            $result->setPath('*/*/index');
         }
-
-        // set entered data if was error when we do save
-        $data = $this->_session->getProfileData(true);
-        if (!empty($data)) {
-            $profile->addData($data);
-        }
-
-        $this->initAction();
-
-        $this->_view->getPage()->getConfig()->getTitle()->prepend(
-            __('Edit Profile')
-        );
-
-        $this->_addBreadcrumb(
-            __('Edit Profile'),
-            __('Edit Profile')
-        );
-
-        $this->_view->renderLayout();
+        return $result;
     }
 }

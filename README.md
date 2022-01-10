@@ -62,8 +62,8 @@ In the Magento Admin Panel go to *Stores > Sequence Profiles*.
 
 Custom Order Number
 
-<img alt="Magento2 Custom Order Number" src="https://karliuka.github.io/m2/sales-sequence/order.png" style="width:100%"/>	
-	
+<img alt="Magento2 Custom Order Number" src="https://karliuka.github.io/m2/sales-sequence/order.png" style="width:100%"/>
+
 ## Uninstall
 This works only with modules defined as Composer packages.
 
