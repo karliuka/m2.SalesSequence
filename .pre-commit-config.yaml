@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.4.0
     hooks:
     -   id: end-of-file-fixer
     -   id: mixed-line-ending
@@ -12,11 +12,14 @@ repos:
     -   id: pretty-format-json
         args: ["--indent=4", "--autofix", "--no-sort-keys"]
 -   repo: https://github.com/eriocnemis/git.MagentoPreCommitHooks
-    rev: 1.0.10
+    rev: 1.0.11
     hooks:
     -   id: magento-xml
     -   id: magento-phpcs
-        args: ["--autofix"]
+        args: ["--autofix", "--php=php8.1"]
     -   id: magento-phpmd
+        args: ["--php=php8.1"]
     -   id: magento-phpcpd
+        args: ["--php=php8.1"]
     -   id: magento-phpstan
+        args: ["--php=php8.1"]

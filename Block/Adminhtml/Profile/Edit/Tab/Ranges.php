@@ -60,6 +60,7 @@ class Ranges extends Generic implements TabInterface
      */
     protected function _prepareForm()
     {
+        /** @var \Magento\SalesSequence\Model\Profile|null $model */
         $model = $this->_coreRegistry->registry('current_sequence_profile');
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();
@@ -116,7 +117,7 @@ class Ranges extends Generic implements TabInterface
         );
 
         if ($model) {
-            $form->addValues($model->getData());
+            $form->addValues((array)$model->getData());
         }
         $this->setForm($form);
 
