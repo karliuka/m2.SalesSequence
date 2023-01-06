@@ -36,7 +36,7 @@ abstract class Profile extends Action
     /**
      * @var LoggerInterface
      */
-    private $logger;
+    protected $logger;
 
     /**
      * Initialize controller
@@ -73,8 +73,8 @@ abstract class Profile extends Action
     protected function initProfile()
     {
         $profileId = $this->getRequest()->getParam('profile_id');
-        if ($profileId) {
-            $profile = $this->profileFactory->create()->load($profileId);
+        if ($profileId && is_numeric($profileId)) {
+            $profile = $this->profileFactory->create()->load((int)$profileId);
             if ($profile->getId()) {
                 $meta = $this->metaFactory->create()->load(
                     $profile->getMetaId()
