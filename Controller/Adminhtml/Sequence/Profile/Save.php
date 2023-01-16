@@ -3,6 +3,8 @@
  * Copyright © Karliuka Vitalii(karliuka.vitalii@gmail.com)
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Faonni\SalesSequence\Controller\Adminhtml\Sequence\Profile;
 
 use Magento\Framework\App\ResponseInterface;

@@ -3,6 +3,8 @@
  * Copyright © Karliuka Vitalii(karliuka.vitalii@gmail.com)
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Faonni\SalesSequence\Block\Adminhtml\Profile\Edit\Tab;
 
 use Magento\Backend\Block\Widget\Form\Generic;
