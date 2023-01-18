@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">eriocnemis_sales_autocancel_rule_form.eriocnemis_sales_autocancel_rule_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <dataScope>data</dataScope>
+        <namespace>eriocnemis_sales_autocancel_rule_form</namespace>
+        <deps>
+            <dep>eriocnemis_sales_autocancel_rule_form.eriocnemis_sales_autocancel_rule_form_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="back">
+                <url path="*/*/index"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="reset">
+                <class>reset</class>
+                <label translate="true">Reset</label>
+            </button>
+            <button name="delete" class="EriocnemisSalesAutoCancelRuleDeleteButton"/>
+            <button name="save" class="EriocnemisSalesAutoCancelRuleSaveButton"/>
+        </buttons>
+    </settings>
+    <dataSource name="eriocnemis_sales_autocancel_rule_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="*/*/save">
+                <param name="_current">1</param>
+            </submitUrl>
+            <validateUrl path="*/*/validate"/>
+        </settings>
+        <dataProvider class="Eriocnemis\SalesAutoCancelRuleAdminUi\Ui\DataProvider\Rule\FormDataProvider" name="eriocnemis_sales_autocancel_rule_form_data_source">
+            <settings>
+                <requestFieldName>rule_id</requestFieldName>
+                <primaryFieldName>rule_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <!-- general fieldset -->
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">General Information</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <dataScope>rule</dataScope>
+        </settings>
+        <field name="status" formElement="checkbox" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable</label>
+            </settings>
+        </field>
+        <field name="name" formElement="input" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="customer_notified" formElement="checkbox" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Notify Customer by Email</label>
+                <notice translate="true">Select the checkbox if you want to send the comment to the customer as a separate email.</notice>
+            </settings>
+        </field>
+        <field name="visible_on_front" formElement="checkbox" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Visible on Storefront</label>
+                <notice translate="true">Select the checkbox if you want the comment to be visible from the customer’s account.</notice>
+            </settings>
+        </field>
+        <field name="duration" formElement="input" sortOrder="50">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Duration</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="duration_unit" formElement="select" sortOrder="60">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <label translate="true">Duration Unit</label>
+            </settings>
+        </field>
+    </fieldset>
+    <!-- restrict fieldset -->
+    <fieldset name="restrict" sortOrder="20">
+        <settings>
+            <label translate="true">Restrict Information</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <dataScope>rule</dataScope>
+        </settings>
+        <field name="store_ids" formElement="multiselect" sortOrder="10">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Stores</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <link>https://docs.magento.com/m2/ce/user_guide/configuration/scope.html</link>
+                    <description>What is this?</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="customer_group_ids" formElement="multiselect" sortOrder="20">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <label translate="true">Customer Groups</label>
+            </settings>
+        </field>
+    </fieldset>
+    <!-- payment fieldset -->
+    <fieldset name="payment" sortOrder="30">
+        <settings>
+            <label translate="true">Payment Methods</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <dataScope>rule</dataScope>
+        </settings>
+        <field name="methods_access" formElement="select" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Methods Access</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="payment_method" formElement="multiselect">
+            <settings>
+                <dataType>field</dataType>
+                <label translate="true">Methods</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>

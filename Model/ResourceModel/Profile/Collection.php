@@ -55,6 +55,7 @@ class Collection extends AbstractCollection
     protected function _initSelect()
     {
         parent::_initSelect();
+
         $this->getSelect()->join(
             ['meta' => $this->getResource()->getTable('sales_sequence_meta')],
             'main_table.meta_id = meta.meta_id',
