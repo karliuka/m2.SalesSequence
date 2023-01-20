@@ -14,7 +14,7 @@
              module="Faonni_SalesSequence"
              sortOrder="41"
              parent="Magento_Backend::stores_settings"
-             action="sales/sequence_profile"
+             action="faonni_sales_sequence/profile"
              resource="Faonni_Sequence::profile"/>
     </menu>
 </config>

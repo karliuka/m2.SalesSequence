@@ -69,7 +69,7 @@ interface ProfileInterface extends ExtensibleDataInterface
     /**
      * Status field name
      */
-    const STATUS = 'status';
+    const STATUS = 'is_active';
 
     /**
      * Retrieve profile id

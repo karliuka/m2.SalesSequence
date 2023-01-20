@@ -7,6 +7,13 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- buttons configurations -->
+    <virtualType name="FaonniSalesSequenceProfileSaveButton" type="Faonni\SalesSequence\Ui\Component\Control\SaveSplitButton">
+        <arguments>
+            <argument name="targetName" xsi:type="string">faonni_sales_sequence_profile_form.faonni_sales_sequence_profile_form</argument>
+            <argument name="aclResource" xsi:type="string">Faonni_SalesSequence::profile</argument>
+        </arguments>
+    </virtualType>
     <!-- data provider configurations -->
     <type name="Magento\Framework\EntityManager\MapperPool">
         <arguments>
@@ -20,6 +27,7 @@
             <argument name="config" xsi:type="array">
                 <item name="Faonni\SalesSequence\Api\Data\ProfileInterface" xsi:type="array">
                     <item name="profile_id" xsi:type="string">id</item>
+                    <item name="is_active" xsi:type="string">status</item>
                 </item>
             </argument>
         </arguments>

@@ -158,7 +158,7 @@
                 <label translate="true">Pattern</label>
             </settings>
         </column>
-        <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="200">
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select" sortOrder="200">
             <settings>
                 <label translate="true">Status</label>
                 <filter>select</filter>
@@ -169,7 +169,7 @@
         <actionsColumn name="actions" class="Magento\Backend\Ui\Component\Listing\Column\EditAction" sortOrder="210">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="editUrlPath" xsi:type="string">sales_sequence/profile/edit</item>
+                    <item name="editUrlPath" xsi:type="string">faonni_sales_sequence/profile/edit</item>
                 </item>
             </argument>
             <settings>

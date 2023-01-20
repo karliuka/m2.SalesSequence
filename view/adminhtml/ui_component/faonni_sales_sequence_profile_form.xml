@@ -9,15 +9,15 @@
     xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">eriocnemis_sales_autocancel_rule_form.eriocnemis_sales_autocancel_rule_form_data_source</item>
+            <item name="provider" xsi:type="string">faonni_sales_sequence_profile_form.faonni_sales_sequence_profile_form_data_source</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
     <settings>
         <dataScope>data</dataScope>
-        <namespace>eriocnemis_sales_autocancel_rule_form</namespace>
+        <namespace>faonni_sales_sequence_profile_form</namespace>
         <deps>
-            <dep>eriocnemis_sales_autocancel_rule_form.eriocnemis_sales_autocancel_rule_form_data_source</dep>
+            <dep>faonni_sales_sequence_profile_form.faonni_sales_sequence_profile_form_data_source</dep>
         </deps>
         <buttons>
             <button name="back">
@@ -29,21 +29,20 @@
                 <class>reset</class>
                 <label translate="true">Reset</label>
             </button>
-            <button name="delete" class="EriocnemisSalesAutoCancelRuleDeleteButton"/>
-            <button name="save" class="EriocnemisSalesAutoCancelRuleSaveButton"/>
+            <button name="save" class="FaonniSalesSequenceProfileSaveButton"/>
         </buttons>
     </settings>
-    <dataSource name="eriocnemis_sales_autocancel_rule_form_data_source" component="Magento_Ui/js/form/provider">
+    <dataSource name="faonni_sales_sequence_profile_form_data_source" component="Magento_Ui/js/form/provider">
         <settings>
             <submitUrl path="*/*/save">
                 <param name="_current">1</param>
             </submitUrl>
             <validateUrl path="*/*/validate"/>
         </settings>
-        <dataProvider class="Eriocnemis\SalesAutoCancelRuleAdminUi\Ui\DataProvider\Rule\FormDataProvider" name="eriocnemis_sales_autocancel_rule_form_data_source">
+        <dataProvider class="Faonni\SalesSequence\Ui\DataProvider\Profile\FormDataProvider" name="faonni_sales_sequence_profile_form_data_source">
             <settings>
-                <requestFieldName>rule_id</requestFieldName>
-                <primaryFieldName>rule_id</primaryFieldName>
+                <requestFieldName>profile_id</requestFieldName>
+                <primaryFieldName>profile_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -53,29 +52,9 @@
             <label translate="true">General Information</label>
             <collapsible>true</collapsible>
             <opened>true</opened>
-            <dataScope>rule</dataScope>
+            <dataScope>profile</dataScope>
         </settings>
         <field name="status" formElement="checkbox" sortOrder="10">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="default" xsi:type="number">1</item>
-                </item>
-            </argument>
-            <settings>
-                <dataType>boolean</dataType>
-                <label translate="true">Enable</label>
-            </settings>
-        </field>
-        <field name="name" formElement="input" sortOrder="20">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Name</label>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-            </settings>
-        </field>
-        <field name="customer_notified" formElement="checkbox" sortOrder="30">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="default" xsi:type="number">0</item>
@@ -83,100 +62,130 @@
             </argument>
             <settings>
                 <dataType>boolean</dataType>
-                <label translate="true">Notify Customer by Email</label>
-                <notice translate="true">Select the checkbox if you want to send the comment to the customer as a separate email.</notice>
+                <label translate="true">Enable</label>
             </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <prefer>toggle</prefer>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                    </settings>
+                </checkbox>
+            </formElements>
         </field>
-        <field name="visible_on_front" formElement="checkbox" sortOrder="40">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="default" xsi:type="number">1</item>
-                </item>
-            </argument>
-            <settings>
-                <dataType>boolean</dataType>
-                <label translate="true">Visible on Storefront</label>
-                <notice translate="true">Select the checkbox if you want the comment to be visible from the customer’s account.</notice>
-            </settings>
-        </field>
-        <field name="duration" formElement="input" sortOrder="50">
-            <settings>
-                <dataType>number</dataType>
-                <label translate="true">Duration</label>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                    <rule name="validate-number" xsi:type="boolean">true</rule>
-                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
-                </validation>
-            </settings>
-        </field>
-        <field name="duration_unit" formElement="select" sortOrder="60">
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>number</dataType>
-                <label translate="true">Duration Unit</label>
-            </settings>
-        </field>
-    </fieldset>
-    <!-- restrict fieldset -->
-    <fieldset name="restrict" sortOrder="20">
-        <settings>
-            <label translate="true">Restrict Information</label>
-            <collapsible>true</collapsible>
-            <opened>false</opened>
-            <dataScope>rule</dataScope>
-        </settings>
-        <field name="store_ids" formElement="multiselect" sortOrder="10">
-            <settings>
-                <dataType>number</dataType>
-                <label translate="true">Stores</label>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <tooltip>
-                    <link>https://docs.magento.com/m2/ce/user_guide/configuration/scope.html</link>
-                    <description>What is this?</description>
-                </tooltip>
-            </settings>
-        </field>
-        <field name="customer_group_ids" formElement="multiselect" sortOrder="20">
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>number</dataType>
-                <label translate="true">Customer Groups</label>
-            </settings>
-        </field>
-    </fieldset>
-    <!-- payment fieldset -->
-    <fieldset name="payment" sortOrder="30">
-        <settings>
-            <label translate="true">Payment Methods</label>
-            <collapsible>true</collapsible>
-            <opened>false</opened>
-            <dataScope>rule</dataScope>
-        </settings>
-        <field name="methods_access" formElement="select" sortOrder="10">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="default" xsi:type="string">1</item>
-                </item>
-            </argument>
+        <field name="entity_type" formElement="input" sortOrder="20">
             <settings>
                 <dataType>text</dataType>
-                <label translate="true">Methods Access</label>
+                <label translate="true">Entity Type</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <disabled>true</disabled>
+            </settings>
+        </field>
+        <field name="store_id" formElement="select" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Store View</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <disabled>true</disabled>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Faonni\SalesSequence\Model\System\Config\Source\Stores"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+    </fieldset>
+    <!-- format fieldset -->
+    <fieldset name="format" sortOrder="20">
+        <settings>
+            <label translate="true">Formatting Identifier</label>
+            <collapsible>true</collapsible>
+            <dataScope>profile</dataScope>
+        </settings>
+        <field name="prefix" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Prefix</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <notice translate="true">The prefix will be added before the identifier number e.g. DE000001. Leave blank if you don't want to use.</notice>
+            </settings>
+        </field>
+        <field name="suffix" formElement="input" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Suffix</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <notice translate="true">The suffix will be added before the identifier number e.g. 000001ORD. Leave blank if you don't want to use.</notice>
+            </settings>
+        </field>
+        <field name="pattern" formElement="input" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Pattern</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <notice translate="true">The basic identifier pattern. If empty, the default(%s%'.09d%s) template will be used.</notice>
+            </settings>
+        </field>
+    </fieldset>
+    <!-- ranges fieldset -->
+    <fieldset name="ranges" sortOrder="30">
+        <settings>
+            <label translate="true">Range of Identifier Values</label>
+            <collapsible>true</collapsible>
+            <dataScope>profile</dataScope>
+        </settings>
+        <field name="start_value" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Start Value</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <notice translate="true">The minimum identifier value.</notice>
+            </settings>
+        </field>
+        <field name="max_value" formElement="input" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Max Value</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <notice translate="true">The maximum identifier value.</notice>
+            </settings>
+        </field>
+        <field name="warning_value" formElement="input" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Warning Value</label>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
             </settings>
         </field>
-        <field name="payment_method" formElement="multiselect">
+        <field name="step" formElement="input" sortOrder="40">
             <settings>
-                <dataType>field</dataType>
-                <label translate="true">Methods</label>
+                <dataType>text</dataType>
+                <label translate="true">Step</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
             </settings>
         </field>
     </fieldset>
