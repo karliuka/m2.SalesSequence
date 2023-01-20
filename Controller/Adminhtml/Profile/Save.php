@@ -10,10 +10,9 @@ namespace Faonni\SalesSequence\Controller\Adminhtml\Profile;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Faonni\SalesSequence\Api\Data\ProfileInterface;
 use Faonni\SalesSequence\Api\Data\ProfileInterfaceFactory;
+use Faonni\SalesSequence\Api\Data\ProfileInterface;
 use Faonni\SalesSequence\Api\SaveProfileInterface;
 
 /**
@@ -27,29 +26,29 @@ class Save extends Action implements HttpPostActionInterface
     const ADMIN_RESOURCE = 'Faonni_SalesSequence::profile';
 
     /**
+     * @var ProfileInterfaceFactory
+     */
+    private $profileFactory;
+
+    /**
      * @var SaveProfileInterface
      */
     private $saveProfile;
 
     /**
-     * @var ProfileInterfaceFactory
-     */
-    private $profileDataFactory;
-
-    /**
      * Initialize controller
      *
      * @param Context $context
-     * @param ProfileInterfaceFactory $profileDataFactory
+     * @param ProfileInterfaceFactory $profileFactory
      * @param SaveProfileInterface $saveProfile
      */
     public function __construct(
         Context $context,
-        ProfileInterfaceFactory $profileDataFactory,
+        ProfileInterfaceFactory $profileFactory,
         SaveProfileInterface $saveProfile
     ) {
+        $this->profileFactory = $profileFactory;
         $this->saveProfile = $saveProfile;
-        $this->profileDataFactory = $profileDataFactory;
 
         parent::__construct(
             $context
@@ -65,36 +64,28 @@ class Save extends Action implements HttpPostActionInterface
     {
         $data = $this->getRequest()->getPost('profile');
         $profileId = (int)$this->getRequest()->getPost(ProfileInterface::PROFILE_ID);
-        /** @var Redirect $result */
+        /** @var \Magento\Framework\Controller\Result\Redirect $result */
         $result = $this->resultRedirectFactory->create();
+        switch ($this->getRequest()->getParam('back')) {
+            case 'edit':
+                $result->setPath('*/*/edit', $this->getParams($profileId));
+                break;
+            default:
+                $result->setPath('*/*/index');
+        }
 
         try {
-            $profile = $this->profileDataFactory->create(['data' => $data]);
+            $profile = $this->profileFactory->create(['data' => $data]);
             $this->saveProfile->execute($profile);
             $this->messageManager->addSuccess(
                 __('You saved the sequence profile.')
             );
-            return $this->resolveResult($result, (int)$profile->getId());
         } catch (\Exception $e) {
             $this->messageManager->addError(
                 $e->getMessage()
             );
         }
-        return $result->setPath('*/*/edit', $this->getParams($profileId));
-    }
-
-    /**
-     * Resolve success result
-     *
-     * @param Redirect $result
-     * @param int $profileId
-     * @return ResultInterface
-     */
-    private function resolveResult(Redirect $result, int $profileId): ResultInterface
-    {
-        return empty($this->getRequest()->getParam('back'))
-            ? $result->setPath('*/*/index')
-            : $result->setPath('*/*/edit', $this->getParams($profileId));
+        return $result;
     }
 
     /**

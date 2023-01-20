@@ -83,7 +83,7 @@ class SaveProfile implements SaveProfileInterface
     public function execute(ProfileInterface $profile): ProfileInterface
     {
         $this->validateProfile->execute($profile);
-        /** @var \Eriocnemis\SalesAutoCancelProfile\Model\Profile $model */
+        /** @var \Faonni\SalesSequence\Model\Profile $model */
         $model = $this->convertDataToProfile->execute($profile);
         try {
             $this->resource->save($model);
