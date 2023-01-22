@@ -9,13 +9,31 @@ namespace Faonni\SalesSequence\Model\ResourceModel;
 
 use Magento\Framework\DB\Select;
 use Magento\Framework\Model\AbstractModel;
-use Magento\SalesSequence\Model\ResourceModel\Profile as ProfileResource;
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use Faonni\SalesSequence\Api\Data\ProfileInterface;
 
 /**
  * Profile resource
  */
-class Profile extends ProfileResource
+class Profile extends AbstractDb
 {
+    /**
+     * Event prefix
+     *
+     * @var string
+     */
+    protected $_eventPrefix = 'faonni_sales_sequence_profile';
+
+    /**
+     * Resource initialization
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+        $this->_init('sales_sequence_profile', ProfileInterface::PROFILE_ID);
+    }
+
     /**
      * Retrieve select object for load object data
      *

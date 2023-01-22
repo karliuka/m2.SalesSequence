@@ -9,13 +9,17 @@
     xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_listing_data_source</item>
+            <item name="provider" xsi:type="string">
+                faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_listing_data_source
+            </item>
         </item>
     </argument>
     <settings>
         <spinner>faonni_sales_sequence_profile_columns</spinner>
         <deps>
-            <dep>faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_listing_data_source</dep>
+            <dep>
+                faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_listing_data_source
+            </dep>
         </deps>
     </settings>
     <dataSource name="faonni_sales_sequence_profile_listing_data_source" component="Magento_Ui/js/grid/provider">
@@ -82,7 +86,9 @@
         <settings>
             <childDefaults>
                 <param name="fieldAction" xsi:type="array">
-                    <item name="provider" xsi:type="string">faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_columns.actions</item>
+                    <item name="provider" xsi:type="string">
+                        faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_columns.actions
+                    </item>
                     <item name="target" xsi:type="string">applyAction</item>
                     <item name="params" xsi:type="array">
                         <item name="0" xsi:type="string">edit</item>

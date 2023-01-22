@@ -8,11 +8,10 @@ declare(strict_types=1);
 namespace Faonni\SalesSequence\Model;
 
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\SalesSequence\Model\ProfileFactory;
 use Faonni\SalesSequence\Model\ResourceModel\Profile as ProfileResource;
+use Faonni\SalesSequence\Api\Data\ProfileInterfaceFactory;
 use Faonni\SalesSequence\Api\Data\ProfileInterface;
 use Faonni\SalesSequence\Api\GetProfileByIdInterface;
-use Faonni\SalesSequence\Api\ConvertProfileToDataInterface;
 
 /**
  * Get profile by profile id
@@ -24,33 +23,25 @@ class GetProfileById implements GetProfileByIdInterface
     /**
      * @var ProfileResource
      */
-    private $resource;
+    private $profileResource;
 
     /**
-     * @var ProfileFactory
+     * @var ProfileInterfaceFactory
      */
-    private $factory;
-
-    /**
-     * @var ConvertProfileToDataInterface
-     */
-    private $convertProfileToData;
+    private $profileFactory;
 
     /**
      * Initialize provider
      *
-     * @param ProfileResource $resource
-     * @param ConvertProfileToDataInterface $convertProfileToData
-     * @param ProfileFactory $factory
+     * @param ProfileResource $profileResource
+     * @param ProfileInterfaceFactory $profileFactory
      */
     public function __construct(
-        ProfileResource $resource,
-        ConvertProfileToDataInterface $convertProfileToData,
-        ProfileFactory $factory
+        ProfileResource $profileResource,
+        ProfileInterfaceFactory $profileFactory
     ) {
-        $this->resource = $resource;
-        $this->convertProfileToData = $convertProfileToData;
-        $this->factory = $factory;
+        $this->profileResource = $profileResource;
+        $this->profileFactory = $profileFactory;
     }
 
     /**
@@ -62,15 +53,15 @@ class GetProfileById implements GetProfileByIdInterface
      */
     public function execute($profileId): ProfileInterface
     {
-        /** @var \Magento\Framework\Model\AbstractModel $profile */
-        $profile = $this->factory->create();
-        $this->resource->load($profile, $profileId, ProfileInterface::PROFILE_ID);
+        /** @var ProfileInterface $profile */
+        $profile = $this->profileFactory->create();
+        $this->profileResource->load($profile, $profileId, ProfileInterface::PROFILE_ID);
 
         if (!$profile->getId()) {
             throw new NoSuchEntityException(
                 __('Profile with id "%value" does not exist.', ['value' => $profileId])
             );
         }
-        return $this->convertProfileToData->execute($profile);
+        return $profile;
     }
 }

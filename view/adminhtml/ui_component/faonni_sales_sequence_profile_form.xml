@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 /**
- * Copyright © Eriocnemis, Inc. All rights reserved.
+ * Copyright © Karliuka Vitalii(karliuka.vitalii@gmail.com)
  * See COPYING.txt for license details.
  */
 -->
@@ -9,15 +9,21 @@
     xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">faonni_sales_sequence_profile_form.faonni_sales_sequence_profile_form_data_source</item>
+            <item name="provider" xsi:type="string">
+                faonni_sales_sequence_profile_form.faonni_sales_sequence_profile_form_data_source
+            </item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
     <settings>
         <dataScope>data</dataScope>
-        <namespace>faonni_sales_sequence_profile_form</namespace>
+        <namespace>
+            faonni_sales_sequence_profile_form
+        </namespace>
         <deps>
-            <dep>faonni_sales_sequence_profile_form.faonni_sales_sequence_profile_form_data_source</dep>
+            <dep>
+                faonni_sales_sequence_profile_form.faonni_sales_sequence_profile_form_data_source
+            </dep>
         </deps>
         <buttons>
             <button name="back">
@@ -116,30 +122,27 @@
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Prefix</label>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">false</rule>
-                </validation>
-                <notice translate="true">The prefix will be added before the identifier number e.g. DE000001. Leave blank if you don't want to use.</notice>
+                <notice translate="true">
+                    The prefix will be added before the identifier number e.g. DE000001. Leave blank if you don't want to use.
+                </notice>
             </settings>
         </field>
         <field name="suffix" formElement="input" sortOrder="20">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Suffix</label>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">false</rule>
-                </validation>
-                <notice translate="true">The suffix will be added before the identifier number e.g. 000001ORD. Leave blank if you don't want to use.</notice>
+                <notice translate="true">
+                    The suffix will be added before the identifier number e.g. 000001ORD. Leave blank if you don't want to use.
+                </notice>
             </settings>
         </field>
         <field name="pattern" formElement="input" sortOrder="30">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Pattern</label>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">false</rule>
-                </validation>
-                <notice translate="true">The basic identifier pattern. If empty, the default(%s%'.09d%s) template will be used.</notice>
+                <notice translate="true">
+                    The basic identifier pattern. If empty, the default(%s%'.09d%s) template will be used.
+                </notice>
             </settings>
         </field>
     </fieldset>
@@ -156,6 +159,8 @@
                 <label translate="true">Start Value</label>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="integer" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
                 </validation>
                 <notice translate="true">The minimum identifier value.</notice>
             </settings>
@@ -166,6 +171,8 @@
                 <label translate="true">Max Value</label>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="integer" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
                 </validation>
                 <notice translate="true">The maximum identifier value.</notice>
             </settings>
@@ -176,6 +183,8 @@
                 <label translate="true">Warning Value</label>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="integer" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
                 </validation>
             </settings>
         </field>
@@ -185,6 +194,8 @@
                 <label translate="true">Step</label>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="integer" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
                 </validation>
             </settings>
         </field>

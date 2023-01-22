@@ -131,12 +131,12 @@ class FormDataProvider extends DataProvider
      */
     private function loadData($profileId): array
     {
-        $data = $this->dataPersistor->get('faonni_sales_sequence_profile') ?: [];
+        $data = $this->dataPersistor->get('faonni_sales_sequence_profile') ?: [];//?
         if (null !== $profileId) {
             $profile = $this->getProfileById->execute($profileId);
-            $data = $this->hydrator->extract($profile);
+            $data = $this->hydrator->extract($profile);//?
         }
-        $this->dataPersistor->clear('faonni_sales_sequence_profile');
+        $this->dataPersistor->clear('faonni_sales_sequence_profile');//?
 
         return $data;
     }

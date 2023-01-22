@@ -13,8 +13,6 @@ use Magento\Framework\Validation\ValidationException;
 use Faonni\SalesSequence\Api\Data\ProfileInterface;
 use Faonni\SalesSequence\Api\SaveProfileInterface;
 use Faonni\SalesSequence\Api\ValidateProfileInterface;
-use Faonni\SalesSequence\Api\ConvertProfileToDataInterface;
-use Faonni\SalesSequence\Api\ConvertDataToProfileInterface;
 use Faonni\SalesSequence\Model\ResourceModel\Profile as ProfileResource;
 
 /**
@@ -27,22 +25,12 @@ class SaveProfile implements SaveProfileInterface
     /**
      * @var ProfileResource
      */
-    private $resource;
+    private $profileResource;
 
     /**
      * @var ValidateProfileInterface
      */
     private $validateProfile;
-
-    /**
-     * @var ConvertDataToProfileInterface
-     */
-    private $convertDataToProfile;
-
-    /**
-     * @var ConvertProfileToDataInterface
-     */
-    private $convertProfileToData;
 
     /**
      * @var LoggerInterface
@@ -52,23 +40,17 @@ class SaveProfile implements SaveProfileInterface
     /**
      * Initialize provider
      *
-     * @param ProfileResource $resource
+     * @param ProfileResource $profileResource
      * @param ValidateProfileInterface $validateProfile
-     * @param ConvertDataToProfileInterface $convertDataToProfile
-     * @param ConvertProfileToDataInterface $convertProfileToData
      * @param LoggerInterface $logger
      */
     public function __construct(
-        ProfileResource $resource,
+        ProfileResource $profileResource,
         ValidateProfileInterface $validateProfile,
-        ConvertDataToProfileInterface $convertDataToProfile,
-        ConvertProfileToDataInterface $convertProfileToData,
         LoggerInterface $logger
     ) {
-        $this->resource = $resource;
+        $this->profileResource = $profileResource;
         $this->validateProfile = $validateProfile;
-        $this->convertDataToProfile = $convertDataToProfile;
-        $this->convertProfileToData = $convertProfileToData;
         $this->logger = $logger;
     }
 
@@ -83,16 +65,14 @@ class SaveProfile implements SaveProfileInterface
     public function execute(ProfileInterface $profile): ProfileInterface
     {
         $this->validateProfile->execute($profile);
-        /** @var \Faonni\SalesSequence\Model\Profile $model */
-        $model = $this->convertDataToProfile->execute($profile);
         try {
-            $this->resource->save($model);
+            $this->profileResource->save($profile);
         } catch (\Exception $e) {
             $this->logger->critical($e->getMessage());
             throw new CouldNotSaveException(
                 __('Could not save the profile with id: %1', $profile->getId())
             );
         }
-        return $this->convertProfileToData->execute($model);
+        return $profile;
     }
 }

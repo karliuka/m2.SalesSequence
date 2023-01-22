@@ -7,14 +7,12 @@ declare(strict_types=1);
 
 namespace Faonni\SalesSequence\Api\Data;
 
-use Magento\Framework\Api\ExtensibleDataInterface;
-
 /**
  * Profile data interface
  *
  * @api
  */
-interface ProfileInterface extends ExtensibleDataInterface
+interface ProfileInterface
 {
     /**
      * Profile id field name
@@ -76,7 +74,7 @@ interface ProfileInterface extends ExtensibleDataInterface
      *
      * @return int|null
      */
-    public function getId(): ?int;
+    public function getId();
 
     /**
      * Set profile id
@@ -84,7 +82,7 @@ interface ProfileInterface extends ExtensibleDataInterface
      * @param int $profileId
      * @return $this
      */
-    public function setId(int $profileId): ProfileInterface;
+    public function setId($profileId);
 
     /**
      * Retrieve entity type
@@ -235,19 +233,4 @@ interface ProfileInterface extends ExtensibleDataInterface
      * @return $this
      */
     public function setStatus(int $status): ProfileInterface;
-
-    /**
-     * Retrieve existing extension attributes object or create a new one
-     *
-     * @return \Faonni\SalesSequence\Api\Data\ProfileExtensionInterface|null
-     */
-    public function getExtensionAttributes();
-
-    /**
-     * Set an extension attributes object
-     *
-     * @param \Faonni\SalesSequence\Api\Data\ProfileExtensionInterface $extensionAttributes
-     * @return $this
-     */
-    public function setExtensionAttributes(ProfileExtensionInterface $extensionAttributes);
 }

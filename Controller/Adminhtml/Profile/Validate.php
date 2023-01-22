@@ -9,6 +9,7 @@ namespace Faonni\SalesSequence\Controller\Adminhtml\Profile;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\Validation\ValidationException;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Controller\ResultInterface;
@@ -29,7 +30,7 @@ class Validate extends Action implements HttpPostActionInterface
     /**
      * @var ProfileInterfaceFactory
      */
-    private $profileDataFactory;
+    private $profileFactory;
 
     /**
      * @var ValidateProfileInterface
@@ -46,16 +47,16 @@ class Validate extends Action implements HttpPostActionInterface
      *
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
-     * @param ProfileInterfaceFactory $profileDataFactory
+     * @param ProfileInterfaceFactory $profileFactory
      * @param ValidateProfileInterface $validateProfile
      */
     public function __construct(
         Context $context,
         JsonFactory $resultJsonFactory,
-        ProfileInterfaceFactory $profileDataFactory,
+        ProfileInterfaceFactory $profileFactory,
         ValidateProfileInterface $validateProfile
     ) {
-        $this->profileDataFactory = $profileDataFactory;
+        $this->profileFactory = $profileFactory;
         $this->validateProfile = $validateProfile;
         $this->resultJsonFactory = $resultJsonFactory;
 
@@ -71,21 +72,21 @@ class Validate extends Action implements HttpPostActionInterface
      */
     public function execute(): ResultInterface
     {
-        $response = ['error' => true];
+        $response = ['error' => true, 'messages' => []];
         $data = $this->getRequest()->getPost('profile');
-        //$profileId = $data[ProfileInterface::PROFILE_ID] ?? null;
 
         try {
-            $profile = $this->profileDataFactory->create(['data' => $data]);
+            $profile = $this->profileFactory->create(['data' => $data]);
             $this->validateProfile->execute($profile);
             $response = ['error' => false];
+        } catch (ValidationException $e) {
+            foreach ($e->getErrors() as $error) {
+                $response['messages'][] = $error->getMessage();
+            }
         } catch (\Exception $e) {
-            //$this->resolveException->execute($e, self::ACTION_NAME);
-            $response['messages'] = [];
-            //foreach ($this->messageManager->getMessages(true)->getErrors() as $message) {
-                $response['messages'][] = $e->getMessages();
-            //}
+            $response['messages'][] = $e->getMessage();
         }
+
         return $this->resultJsonFactory->create()->setData($response);
     }
 }

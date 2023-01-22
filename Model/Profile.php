@@ -5,40 +5,25 @@
  */
 declare(strict_types=1);
 
-namespace Faonni\SalesSequence\Model\Data;
+namespace Faonni\SalesSequence\Model;
 
-use Magento\Framework\Api\AbstractExtensibleObject;
-use Faonni\SalesSequence\Api\Data\ProfileExtensionInterface;
+use Magento\Framework\Model\AbstractModel;
 use Faonni\SalesSequence\Api\Data\ProfileInterface;
+use Faonni\SalesSequence\Model\ResourceModel\Profile as ProfileResource;
 
 /**
- * Profile data
+ * Profile model
  */
-class Profile extends AbstractExtensibleObject implements ProfileInterface
+class Profile extends AbstractModel implements ProfileInterface
 {
     /**
-     * Retrieve profile id
+     * Model construct that should be used for object initialization
      *
-     * @return int|null
+     * @return void
      */
-    public function getId(): ?int
+    protected function _construct()
     {
-        $id = $this->_get(self::PROFILE_ID);
-        if ($id) {
-            return (int)$id;
-        }
-        return null;
-    }
-
-    /**
-     * Set profile id
-     *
-     * @param int $profileId
-     * @return $this
-     */
-    public function setId(int $profileId): ProfileInterface
-    {
-        return $this->setData(self::PROFILE_ID, $profileId);
+        $this->_init(ProfileResource::class);
     }
 
     /**
@@ -48,7 +33,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getEntityType(): string
     {
-        return (string)$this->_get(self::ENTITY_TYPE);
+        return (string)$this->getData(self::ENTITY_TYPE);
     }
 
     /**
@@ -69,7 +54,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getStoreId(): int
     {
-        return (int)$this->_get(self::STORE_ID);
+        return (int)$this->getData(self::STORE_ID);
     }
 
     /**
@@ -90,7 +75,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getPrefix(): string
     {
-        return (string)$this->_get(self::PREFIX);
+        return (string)$this->getData(self::PREFIX);
     }
 
     /**
@@ -111,7 +96,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getSuffix(): string
     {
-        return (string)$this->_get(self::SUFFIX);
+        return (string)$this->getData(self::SUFFIX);
     }
 
     /**
@@ -132,7 +117,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getStartValue(): string
     {
-        return (string)$this->_get(self::START_VALUE);
+        return (string)$this->getData(self::START_VALUE);
     }
 
     /**
@@ -153,7 +138,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getMaxValue(): string
     {
-        return (string)$this->_get(self::MAX_VALUE);
+        return (string)$this->getData(self::MAX_VALUE);
     }
 
     /**
@@ -174,7 +159,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getWarningValue(): string
     {
-        return (string)$this->_get(self::WARNING_VALUE);
+        return (string)$this->getData(self::WARNING_VALUE);
     }
 
     /**
@@ -195,7 +180,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getStep(): string
     {
-        return (string)$this->_get(self::STEP);
+        return (string)$this->getData(self::STEP);
     }
 
     /**
@@ -216,7 +201,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getPattern(): string
     {
-        return (string)$this->_get(self::PATTERN);
+        return (string)$this->getData(self::PATTERN);
     }
 
     /**
@@ -237,7 +222,7 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
      */
     public function getStatus(): int
     {
-        return (int)$this->_get(self::STATUS);
+        return (int)$this->getData(self::STATUS);
     }
 
     /**
@@ -249,26 +234,5 @@ class Profile extends AbstractExtensibleObject implements ProfileInterface
     public function setStatus(int $status): ProfileInterface
     {
         return $this->setData(self::STATUS, $status);
-    }
-
-    /**
-     * Retrieve existing extension attributes object or create a new one
-     *
-     * @return \Faonni\SalesSequence\Api\Data\ProfileExtensionInterface|null
-     */
-    public function getExtensionAttributes()
-    {
-        return $this->_getExtensionAttributes();
-    }
-
-    /**
-     * Set an extension attributes object
-     *
-     * @param \Faonni\SalesSequence\Api\Data\ProfileExtensionInterface $extensionAttributes
-     * @return $this
-     */
-    public function setExtensionAttributes(ProfileExtensionInterface $extensionAttributes)
-    {
-        return $this->_setExtensionAttributes($extensionAttributes);
     }
 }

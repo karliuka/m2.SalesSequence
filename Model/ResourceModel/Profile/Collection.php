@@ -8,8 +8,8 @@ declare(strict_types=1);
 namespace Faonni\SalesSequence\Model\ResourceModel\Profile;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Magento\SalesSequence\Model\ResourceModel\Profile as ProfileResource;
-use Magento\SalesSequence\Model\Profile;
+use Faonni\SalesSequence\Model\ResourceModel\Profile as ProfileResource;
+use Faonni\SalesSequence\Model\Profile;
 
 /**
  * Profile collection
@@ -21,7 +21,7 @@ class Collection extends AbstractCollection
      *
      * @var string
      */
-    protected $_eventPrefix = 'sales_sequence_profile_collection';
+    protected $_eventPrefix = 'faonni_sales_sequence_profile_collection';
 
     /**
      * Name of event parameter

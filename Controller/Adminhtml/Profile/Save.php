@@ -11,8 +11,8 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Faonni\SalesSequence\Api\Data\ProfileInterfaceFactory;
 use Faonni\SalesSequence\Api\Data\ProfileInterface;
+use Faonni\SalesSequence\Api\GetProfileByIdInterface;
 use Faonni\SalesSequence\Api\SaveProfileInterface;
 
 /**
@@ -26,9 +26,9 @@ class Save extends Action implements HttpPostActionInterface
     const ADMIN_RESOURCE = 'Faonni_SalesSequence::profile';
 
     /**
-     * @var ProfileInterfaceFactory
+     * @var GetProfileByIdInterface
      */
-    private $profileFactory;
+    private $getProfileById;
 
     /**
      * @var SaveProfileInterface
@@ -39,15 +39,15 @@ class Save extends Action implements HttpPostActionInterface
      * Initialize controller
      *
      * @param Context $context
-     * @param ProfileInterfaceFactory $profileFactory
+     * @param GetProfileByIdInterface $getProfileById
      * @param SaveProfileInterface $saveProfile
      */
     public function __construct(
         Context $context,
-        ProfileInterfaceFactory $profileFactory,
+        GetProfileByIdInterface $getProfileById,
         SaveProfileInterface $saveProfile
     ) {
-        $this->profileFactory = $profileFactory;
+        $this->getProfileById = $getProfileById;
         $this->saveProfile = $saveProfile;
 
         parent::__construct(
@@ -63,7 +63,7 @@ class Save extends Action implements HttpPostActionInterface
     public function execute(): ResultInterface
     {
         $data = $this->getRequest()->getPost('profile');
-        $profileId = (int)$this->getRequest()->getPost(ProfileInterface::PROFILE_ID);
+        $profileId = (int)$this->getRequest()->getParam(ProfileInterface::PROFILE_ID);
         /** @var \Magento\Framework\Controller\Result\Redirect $result */
         $result = $this->resultRedirectFactory->create();
         switch ($this->getRequest()->getParam('back')) {
@@ -75,7 +75,8 @@ class Save extends Action implements HttpPostActionInterface
         }
 
         try {
-            $profile = $this->profileFactory->create(['data' => $data]);
+            $profile = $this->getProfileById->execute($profileId);
+            $profile->addData($data);
             $this->saveProfile->execute($profile);
             $this->messageManager->addSuccess(
                 __('You saved the sequence profile.')
