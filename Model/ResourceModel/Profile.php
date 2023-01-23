@@ -44,12 +44,9 @@ class Profile extends AbstractDb
      */
     protected function _getLoadSelect($field, $value, $object)
     {
+        $metaField = sprintf('%s.%s', $this->getMainTable(), 'meta_id');
+
         $select = parent::_getLoadSelect($field, $value, $object);
-
-        $metaField = $this->getConnection()->quoteIdentifier(
-            sprintf('%s.%s', $this->getMainTable(), 'meta_id')
-        );
-
         $select->join(
             ['meta' => $this->getTable('sales_sequence_meta')],
             $metaField . ' = meta.meta_id',

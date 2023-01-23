@@ -70,6 +70,9 @@ class SaveSplitButton implements ButtonProviderInterface
                                 'params' => [
                                     // first param is redirect flag
                                     false,
+                                    [
+                                        'save_and_continue' => true,
+                                    ],
                                 ]
                             ]
                         ]
@@ -103,6 +106,9 @@ class SaveSplitButton implements ButtonProviderInterface
                                     'params' => [
                                         // first param is redirect flag
                                         true,
+                                        [
+                                            'save_and_continue' => false,
+                                        ],
                                     ],
                                 ],
                             ],

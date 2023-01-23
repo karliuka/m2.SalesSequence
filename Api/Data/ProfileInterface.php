@@ -89,7 +89,7 @@ interface ProfileInterface
      *
      * @return string
      */
-    public function getEntityType(): string;
+    public function getEntityType();
 
     /**
      * Set entity type
@@ -97,14 +97,14 @@ interface ProfileInterface
      * @param string $entityType
      * @return $this
      */
-    public function setEntityType(string $entityType): ProfileInterface;
+    public function setEntityType($entityType);
 
     /**
      * Retrieve store id
      *
      * @return int
      */
-    public function getStoreId(): int;
+    public function getStoreId();
 
     /**
      * Set store id
@@ -112,14 +112,14 @@ interface ProfileInterface
      * @param int $storeId
      * @return $this
      */
-    public function setStoreId(int $storeId): ProfileInterface;
+    public function setStoreId($storeId);
 
     /**
      * Retrieve prefix
      *
      * @return string
      */
-    public function getPrefix(): string;
+    public function getPrefix();
 
     /**
      * Set prefix
@@ -127,14 +127,14 @@ interface ProfileInterface
      * @param string $prefix
      * @return $this
      */
-    public function setPrefix(string $prefix): ProfileInterface;
+    public function setPrefix($prefix);
 
     /**
      * Retrieve suffix
      *
      * @return string
      */
-    public function getSuffix(): string;
+    public function getSuffix();
 
     /**
      * Set suffix
@@ -142,14 +142,14 @@ interface ProfileInterface
      * @param string $suffix
      * @return $this
      */
-    public function setSuffix(string $suffix): ProfileInterface;
+    public function setSuffix($suffix);
 
     /**
      * Retrieve start value
      *
      * @return string
      */
-    public function getStartValue(): string;
+    public function getStartValue();
 
     /**
      * Set start value
@@ -157,14 +157,14 @@ interface ProfileInterface
      * @param string $startValue
      * @return $this
      */
-    public function setStartValue(string $startValue): ProfileInterface;
+    public function setStartValue($startValue);
 
     /**
      * Retrieve max value
      *
      * @return string
      */
-    public function getMaxValue(): string;
+    public function getMaxValue();
 
     /**
      * Set max value
@@ -172,14 +172,14 @@ interface ProfileInterface
      * @param string $maxValue
      * @return $this
      */
-    public function setMaxValue(string $maxValue): ProfileInterface;
+    public function setMaxValue($maxValue);
 
     /**
      * Retrieve warning value
      *
      * @return string
      */
-    public function getWarningValue(): string;
+    public function getWarningValue();
 
     /**
      * Set warning value
@@ -187,14 +187,14 @@ interface ProfileInterface
      * @param string $warningValue
      * @return $this
      */
-    public function setWarningValue(string $warningValue): ProfileInterface;
+    public function setWarningValue($warningValue);
 
     /**
      * Retrieve step
      *
      * @return string
      */
-    public function getStep(): string;
+    public function getStep();
 
     /**
      * Set step
@@ -202,14 +202,14 @@ interface ProfileInterface
      * @param string $step
      * @return $this
      */
-    public function setStep(string $step): ProfileInterface;
+    public function setStep($step);
 
     /**
      * Retrieve pattern
      *
      * @return string
      */
-    public function getPattern(): string;
+    public function getPattern();
 
     /**
      * Set pattern
@@ -217,20 +217,20 @@ interface ProfileInterface
      * @param string $pattern
      * @return $this
      */
-    public function setPattern(string $pattern): ProfileInterface;
+    public function setPattern($pattern);
 
     /**
      * Whether the profile is active
      *
-     * @return int
+     * @return string
      */
-    public function getStatus(): int;
+    public function getStatus();
 
     /**
      * Set whether the profile is active
      *
-     * @param int $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(int $status): ProfileInterface;
+    public function setStatus($status);
 }

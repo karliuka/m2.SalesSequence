@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Faonni\SalesSequence\Controller\Adminhtml\Profile;
 
+use Psr\Log\LoggerInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Validation\ValidationException;
@@ -43,22 +44,30 @@ class Validate extends Action implements HttpPostActionInterface
     private $resultJsonFactory;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * Initialize controller
      *
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
      * @param ProfileInterfaceFactory $profileFactory
      * @param ValidateProfileInterface $validateProfile
+     * @param LoggerInterface $logger
      */
     public function __construct(
         Context $context,
         JsonFactory $resultJsonFactory,
         ProfileInterfaceFactory $profileFactory,
-        ValidateProfileInterface $validateProfile
+        ValidateProfileInterface $validateProfile,
+        LoggerInterface $logger
     ) {
         $this->profileFactory = $profileFactory;
         $this->validateProfile = $validateProfile;
         $this->resultJsonFactory = $resultJsonFactory;
+        $this->logger = $logger;
 
         parent::__construct(
             $context
@@ -73,7 +82,7 @@ class Validate extends Action implements HttpPostActionInterface
     public function execute(): ResultInterface
     {
         $response = ['error' => true, 'messages' => []];
-        $data = $this->getRequest()->getPost('profile');
+        $data = $this->getRequest()->getParam('profile');
 
         try {
             $profile = $this->profileFactory->create(['data' => $data]);
@@ -84,7 +93,8 @@ class Validate extends Action implements HttpPostActionInterface
                 $response['messages'][] = $error->getMessage();
             }
         } catch (\Exception $e) {
-            $response['messages'][] = $e->getMessage();
+            $this->logger->critical($e->getMessage());
+            $response['messages'][] = __('Something went wrong while validating the sequence profile.');
         }
 
         return $this->resultJsonFactory->create()->setData($response);

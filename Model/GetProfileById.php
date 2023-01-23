@@ -53,13 +53,13 @@ class GetProfileById implements GetProfileByIdInterface
      */
     public function execute($profileId): ProfileInterface
     {
-        /** @var ProfileInterface $profile */
         $profile = $this->profileFactory->create();
+        /** @var \Magento\Framework\Model\AbstractModel $profile */
         $this->profileResource->load($profile, $profileId, ProfileInterface::PROFILE_ID);
-
+        /** @var ProfileInterface $profile */
         if (!$profile->getId()) {
             throw new NoSuchEntityException(
-                __('Profile with id "%value" does not exist.', ['value' => $profileId])
+                __('Profile with id %1 does not exist.', $profileId)
             );
         }
         return $profile;

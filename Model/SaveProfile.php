@@ -66,7 +66,9 @@ class SaveProfile implements SaveProfileInterface
     {
         $this->validateProfile->execute($profile);
         try {
+            /** @var \Magento\Framework\Model\AbstractModel $profile */
             $this->profileResource->save($profile);
+            /** @var ProfileInterface $profile */
         } catch (\Exception $e) {
             $this->logger->critical($e->getMessage());
             throw new CouldNotSaveException(

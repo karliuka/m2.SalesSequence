@@ -55,17 +55,30 @@ class Edit extends Action implements HttpGetActionInterface
      */
     public function execute(): ResultInterface
     {
-        $profileId = (int)$this->getRequest()->getParam(ProfileInterface::PROFILE_ID);
-        /** @var \Magento\Backend\Model\View\Result\Page $result */
-        $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $result->setActiveMenu('Faonni_SalesSequence::profile');
-
-        $title = $result->getConfig()->getTitle();
-        $title->prepend((string)__('Sequence Profiles'));
+        $profileId = $this->getProfileId();
+        if (null === $profileId) {
+            /** @var \Magento\Framework\Controller\Result\Redirect $result */
+            $result = $this->resultRedirectFactory->create();
+            $this->messageManager->addError(
+                (string)__('Please correct the sequence profile you requested.')
+            );
+            return $result->setPath('*/*');
+        }
 
         try {
+            /** @var \Magento\Backend\Model\View\Result\Page $result */
+            $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+            $result->setActiveMenu('Faonni_SalesSequence::profile');
             $profile = $this->getProfileById->execute($profileId);
-            $title->prepend((string)$profile->getEntityType());
+
+            $title = $result->getConfig()->getTitle();
+            $title->prepend(
+                (string)__('Sequence Profiles')
+            );
+
+            $title->prepend(
+                $profile->getEntityType()
+            );
         } catch (NoSuchEntityException $e) {
             /** @var \Magento\Framework\Controller\Result\Redirect $result */
             $result = $this->resultRedirectFactory->create();
@@ -76,5 +89,19 @@ class Edit extends Action implements HttpGetActionInterface
         }
 
         return $result;
+    }
+
+    /**
+     * Retrieve profile id
+     *
+     * @return int|null
+     */
+    private function getProfileId(): ?int
+    {
+        $profileId = $this->getRequest()->getParam(ProfileInterface::PROFILE_ID);
+        if (is_string($profileId) || is_int($profileId)) {
+            return (int)$profileId;
+        }
+        return null;
     }
 }

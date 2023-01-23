@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Faonni\SalesSequence\Ui\DataProvider\Profile;
 
-use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\EntityManager\HydratorInterface;
 use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
@@ -27,19 +26,14 @@ class FormDataProvider extends DataProvider
     private $getProfileById;
 
     /**
-     * @var HydratorInterface
-     */
-    private $hydrator;
-
-    /**
      * @var PoolInterface
      */
     private $modifierPool;
 
     /**
-     * @var DataPersistorInterface
+     * @var HydratorInterface
      */
-    private $dataPersistor;
+    private $hydrator;
 
     /**
      * Initialize provider
@@ -65,7 +59,6 @@ class FormDataProvider extends DataProvider
         array $meta = [],
         array $data = []
     ) {
-        $this->dataPersistor = $context->getDataPersistor();
         $this->modifierPool = $modifierPool;
         $this->getProfileById = $getProfileById;
         $this->hydrator = $hydrator;
@@ -120,7 +113,10 @@ class FormDataProvider extends DataProvider
     private function getProfileId(): ?int
     {
         $profileId = $this->request->getParam($this->getRequestFieldName());
-        return $profileId ? (int)$profileId : null;
+        if (is_string($profileId) || is_int($profileId)) {
+            return (int)$profileId;
+        }
+        return null;
     }
 
     /**
@@ -131,14 +127,11 @@ class FormDataProvider extends DataProvider
      */
     private function loadData($profileId): array
     {
-        $data = $this->dataPersistor->get('faonni_sales_sequence_profile') ?: [];//?
         if (null !== $profileId) {
             $profile = $this->getProfileById->execute($profileId);
-            $data = $this->hydrator->extract($profile);//?
+            return $this->hydrator->extract($profile);
         }
-        $this->dataPersistor->clear('faonni_sales_sequence_profile');//?
-
-        return $data;
+        return [];
     }
 
     /**

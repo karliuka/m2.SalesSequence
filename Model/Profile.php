@@ -31,9 +31,9 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return string
      */
-    public function getEntityType(): string
+    public function getEntityType()
     {
-        return (string)$this->getData(self::ENTITY_TYPE);
+        return $this->_data[self::ENTITY_TYPE] ?? '';
     }
 
     /**
@@ -42,7 +42,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param string $entityType
      * @return $this
      */
-    public function setEntityType(string $entityType): ProfileInterface
+    public function setEntityType($entityType)
     {
         return $this->setData(self::ENTITY_TYPE, $entityType);
     }
@@ -52,9 +52,9 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return int
      */
-    public function getStoreId(): int
+    public function getStoreId()
     {
-        return (int)$this->getData(self::STORE_ID);
+        return $this->_data[self::STORE_ID] ?? '';
     }
 
     /**
@@ -63,7 +63,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param int $storeId
      * @return $this
      */
-    public function setStoreId(int $storeId): ProfileInterface
+    public function setStoreId($storeId)
     {
         return $this->setData(self::STORE_ID, $storeId);
     }
@@ -73,9 +73,9 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return string
      */
-    public function getPrefix(): string
+    public function getPrefix()
     {
-        return (string)$this->getData(self::PREFIX);
+        return $this->_data[self::PREFIX] ?? '';
     }
 
     /**
@@ -84,7 +84,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param string $prefix
      * @return $this
      */
-    public function setPrefix(string $prefix): ProfileInterface
+    public function setPrefix($prefix)
     {
         return $this->setData(self::PREFIX, $prefix);
     }
@@ -94,9 +94,9 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return string
      */
-    public function getSuffix(): string
+    public function getSuffix()
     {
-        return (string)$this->getData(self::SUFFIX);
+        return $this->_data[self::SUFFIX] ?? '';
     }
 
     /**
@@ -105,7 +105,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param string $suffix
      * @return $this
      */
-    public function setSuffix(string $suffix): ProfileInterface
+    public function setSuffix($suffix)
     {
         return $this->setData(self::SUFFIX, $suffix);
     }
@@ -115,9 +115,9 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return string
      */
-    public function getStartValue(): string
+    public function getStartValue()
     {
-        return (string)$this->getData(self::START_VALUE);
+        return $this->_data[self::START_VALUE] ?? '';
     }
 
     /**
@@ -126,7 +126,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param string $startValue
      * @return $this
      */
-    public function setStartValue(string $startValue): ProfileInterface
+    public function setStartValue($startValue)
     {
         return $this->setData(self::START_VALUE, $startValue);
     }
@@ -136,9 +136,9 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return string
      */
-    public function getMaxValue(): string
+    public function getMaxValue()
     {
-        return (string)$this->getData(self::MAX_VALUE);
+        return $this->_data[self::MAX_VALUE] ?? '';
     }
 
     /**
@@ -147,7 +147,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param string $maxValue
      * @return $this
      */
-    public function setMaxValue(string $maxValue): ProfileInterface
+    public function setMaxValue($maxValue)
     {
         return $this->setData(self::MAX_VALUE, $maxValue);
     }
@@ -157,9 +157,9 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return string
      */
-    public function getWarningValue(): string
+    public function getWarningValue()
     {
-        return (string)$this->getData(self::WARNING_VALUE);
+        return $this->_data[self::WARNING_VALUE] ?? '';
     }
 
     /**
@@ -168,7 +168,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param string $warningValue
      * @return $this
      */
-    public function setWarningValue(string $warningValue): ProfileInterface
+    public function setWarningValue($warningValue)
     {
         return $this->setData(self::WARNING_VALUE, $warningValue);
     }
@@ -178,9 +178,9 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return string
      */
-    public function getStep(): string
+    public function getStep()
     {
-        return (string)$this->getData(self::STEP);
+        return $this->_data[self::STEP] ?? '';
     }
 
     /**
@@ -189,7 +189,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param string $step
      * @return $this
      */
-    public function setStep(string $step): ProfileInterface
+    public function setStep($step)
     {
         return $this->setData(self::STEP, $step);
     }
@@ -199,9 +199,9 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return string
      */
-    public function getPattern(): string
+    public function getPattern()
     {
-        return (string)$this->getData(self::PATTERN);
+        return $this->_data[self::PATTERN] ?? '';
     }
 
     /**
@@ -210,7 +210,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param string $pattern
      * @return $this
      */
-    public function setPattern(string $pattern): ProfileInterface
+    public function setPattern($pattern)
     {
         return $this->setData(self::PATTERN, $pattern);
     }
@@ -218,20 +218,20 @@ class Profile extends AbstractModel implements ProfileInterface
     /**
      * Whether the profile is active
      *
-     * @return int
+     * @return string
      */
-    public function getStatus(): int
+    public function getStatus()
     {
-        return (int)$this->getData(self::STATUS);
+        return $this->_data[self::STATUS] ?? '';
     }
 
     /**
      * Set whether the profile is active
      *
-     * @param int $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(int $status): ProfileInterface
+    public function setStatus($status)
     {
         return $this->setData(self::STATUS, $status);
     }

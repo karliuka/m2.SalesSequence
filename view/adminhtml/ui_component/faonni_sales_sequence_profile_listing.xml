@@ -55,30 +55,6 @@
                 </templates>
             </settings>
         </filters>
-        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions" class="Faonni\SalesSequence\Ui\Component\Listing\MassAction">
-            <action name="status">
-                <settings>
-                    <type>status</type>
-                    <label translate="true">Change status</label>
-                    <actions>
-                        <action name="0">
-                            <type>enable</type>
-                            <label translate="true">Enable</label>
-                            <url path="*/*/massStatus">
-                                <param name="status">1</param>
-                            </url>
-                        </action>
-                        <action name="1">
-                            <type>disable</type>
-                            <label translate="true">Disable</label>
-                            <url path="*/*/massStatus">
-                                <param name="status">0</param>
-                            </url>
-                        </action>
-                    </actions>
-                </settings>
-            </action>
-        </massaction>
         <exportButton name="export_button"/>
         <paging name="listing_paging"/>
     </listingToolbar>

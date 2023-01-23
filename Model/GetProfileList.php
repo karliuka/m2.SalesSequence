@@ -74,11 +74,18 @@ class GetProfileList implements GetProfileListInterface
         if (null === $searchCriteria) {
             $searchCriteria = $this->searchCriteriaBuilder->create();
         }
+
         $this->collectionProcessor->process($searchCriteria, $collection);
+
+        $items = [];
+        /** @var \Faonni\SalesSequence\Api\Data\ProfileInterface $profile */
+        foreach ($collection->getItems() as $profile) {
+            $items[$profile->getId()] = $profile;
+        }
 
         /** @var ProfileSearchResultInterface $searchResult */
         $searchResult = $this->searchResultsFactory->create();
-        $searchResult->setItems($collection->getItems());
+        $searchResult->setItems($items);
         $searchResult->setTotalCount($collection->getSize());
         $searchResult->setSearchCriteria($searchCriteria);
 
