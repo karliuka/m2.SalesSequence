@@ -7,9 +7,10 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Faonni_SalesSequence" setup_version="2.4.3">
+    <module name="Faonni_SalesSequence">
         <sequence>
             <module name="Magento_Backend"/>
+            <module name="Magento_Ui"/>
             <module name="Magento_Store"/>
             <module name="Magento_SalesSequence"/>
         </sequence>
