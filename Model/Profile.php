@@ -220,7 +220,7 @@ class Profile extends AbstractModel implements ProfileInterface
      *
      * @return string
      */
-    public function getStatus()
+    public function getIsActive()
     {
         return $this->_data[self::STATUS] ?? '';
     }
@@ -231,7 +231,7 @@ class Profile extends AbstractModel implements ProfileInterface
      * @param string $status
      * @return $this
      */
-    public function setStatus($status)
+    public function setIsActive($status)
     {
         return $this->setData(self::STATUS, $status);
     }

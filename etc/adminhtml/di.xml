@@ -27,7 +27,6 @@
             <argument name="config" xsi:type="array">
                 <item name="Faonni\SalesSequence\Api\Data\ProfileInterface" xsi:type="array">
                     <item name="profile_id" xsi:type="string">id</item>
-                    <item name="is_active" xsi:type="string">status</item>
                 </item>
             </argument>
         </arguments>

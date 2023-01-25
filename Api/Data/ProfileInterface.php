@@ -224,7 +224,7 @@ interface ProfileInterface
      *
      * @return string
      */
-    public function getStatus();
+    public function getIsActive();
 
     /**
      * Set whether the profile is active
@@ -232,5 +232,5 @@ interface ProfileInterface
      * @param string $status
      * @return $this
      */
-    public function setStatus($status);
+    public function setIsActive($status);
 }
