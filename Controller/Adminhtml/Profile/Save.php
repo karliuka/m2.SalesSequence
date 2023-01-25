@@ -145,8 +145,7 @@ class Save extends Action implements HttpPostActionInterface
     private function getParams($profileId): array
     {
         return [
-            ProfileInterface::PROFILE_ID => $profileId,
-            '_current' => true
+            ProfileInterface::PROFILE_ID => $profileId
         ];
     }
 }
