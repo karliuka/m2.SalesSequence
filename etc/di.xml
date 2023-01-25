@@ -7,6 +7,24 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- preference -->
+    <preference for="Faonni\SalesSequence\Api\Data\ProfileInterface" type="Faonni\SalesSequence\Model\Profile"/>
+    <preference for="Faonni\SalesSequence\Api\Data\ProfileSearchResultInterface" type="Faonni\SalesSequence\Model\Data\ProfileSearchResult"/>
+    <preference for="Faonni\SalesSequence\Model\Profile\ValidatorInterface" type="Faonni\SalesSequence\Model\Profile\Validator"/>
+    <!-- api preference -->
+    <preference for="Faonni\SalesSequence\Api\GetProfileByIdInterface" type="Faonni\SalesSequence\Model\GetProfileById"/>
+    <preference for="Faonni\SalesSequence\Api\GetProfileListInterface" type="Faonni\SalesSequence\Model\GetProfileList"/>
+    <preference for="Faonni\SalesSequence\Api\ValidateProfileInterface" type="Faonni\SalesSequence\Model\ValidateProfile"/>
+    <preference for="Faonni\SalesSequence\Api\SaveProfileInterface" type="Faonni\SalesSequence\Model\SaveProfile"/>
+    <!-- validator configuration -->
+    <type name="Faonni\SalesSequence\Model\Profile\Validator">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="range" xsi:type="object">Faonni\SalesSequence\Model\Profile\Validator\RangeValidator</item>
+                <item name="status" xsi:type="object">Faonni\SalesSequence\Model\Profile\Validator\StatusValidator</item>
+            </argument>
+        </arguments>
+    </type>
     <!-- plugin -->
     <type name="Magento\SalesSequence\Model\Manager">
         <plugin name="faonni_salessequence" type="Faonni\SalesSequence\Plugin\SalesSequence\Model\ManagerPlugin"/>

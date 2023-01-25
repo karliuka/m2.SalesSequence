@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Karliuka Vitalii(karliuka.vitalii@gmail.com)
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- buttons configurations -->
+    <virtualType name="FaonniSalesSequenceProfileSaveButton" type="Faonni\SalesSequence\Ui\Component\Control\SaveSplitButton">
+        <arguments>
+            <argument name="targetName" xsi:type="string">faonni_sales_sequence_profile_form.faonni_sales_sequence_profile_form</argument>
+            <argument name="aclResource" xsi:type="string">Faonni_SalesSequence::profile_edit</argument>
+        </arguments>
+    </virtualType>
+    <!-- listing data provider configurations -->
+    <virtualType name="FaonniSalesSequenceProfileListingModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool"/>
+    <type name="Faonni\SalesSequence\Ui\DataProvider\Profile\ListingDataProvider">
+        <arguments>
+            <argument name="modifierPool" xsi:type="object">FaonniSalesSequenceProfileListingModifierPool</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MapperPool">
+        <arguments>
+            <argument name="mappers" xsi:type="array">
+                <item name="Faonni\SalesSequence\Api\Data\ProfileInterface" xsi:type="string">FaonniSalesSequenceProfileMapper</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="FaonniSalesSequenceProfileMapper" type="Magento\Framework\EntityManager\Mapper">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="Faonni\SalesSequence\Api\Data\ProfileInterface" xsi:type="array">
+                    <item name="profile_id" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- form data provider configurations -->
+    <virtualType name="FaonniSalesSequenceProfileFormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool"/>
+    <type name="Faonni\SalesSequence\Ui\DataProvider\Profile\FormDataProvider">
+        <arguments>
+            <argument name="modifierPool" xsi:type="object">FaonniSalesSequenceProfileFormModifierPool</argument>
+        </arguments>
+    </type>
+</config>

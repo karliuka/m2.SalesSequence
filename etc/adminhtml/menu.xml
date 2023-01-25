@@ -8,13 +8,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Faonni_Sequence::profile"
+        <add id="Faonni_SalesSequence::profile"
              title="Sequence Profiles"
              translate="title"
              module="Faonni_SalesSequence"
              sortOrder="41"
              parent="Magento_Backend::stores_settings"
-             action="sales/sequence_profile"
-             resource="Faonni_Sequence::profile"/>
+             action="faonni_sales_sequence/profile"
+             resource="Faonni_SalesSequence::profile"/>
     </menu>
 </config>

@@ -3,49 +3,47 @@
  * Copyright © Karliuka Vitalii(karliuka.vitalii@gmail.com)
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Faonni\SalesSequence\Plugin\SalesSequence\Model;
 
 use Magento\Framework\DB\Sequence\SequenceInterface;
-use Magento\SalesSequence\Model\ResourceModel\Meta as ResourceSequenceMeta;
+use Magento\SalesSequence\Model\ResourceModel\Meta as MetaResource;
 use Magento\SalesSequence\Model\SequenceFactory;
 use Magento\SalesSequence\Model\Sequence;
 use Magento\SalesSequence\Model\Manager;
 
 /**
- * SalesSequence manager
+ * Sales sequence manager
  */
 class ManagerPlugin
 {
     /**
-     * Sequence meta resource
-     *
-     * @var ResourceSequenceMeta
+     * @var MetaResource
      */
-    protected $resourceSequenceMeta;
+    private $metaResource;
 
     /**
-     * Sequence factory
-     *
      * @var SequenceFactory
      */
-    protected $sequenceFactory;
+    private $sequenceFactory;
 
     /**
      * Initialize manager
      *
-     * @param ResourceSequenceMeta $resourceSequenceMeta
+     * @param MetaResource $metaResource
      * @param SequenceFactory $sequenceFactory
      */
     public function __construct(
-        ResourceSequenceMeta $resourceSequenceMeta,
+        MetaResource $metaResource,
         SequenceFactory $sequenceFactory
     ) {
-        $this->resourceSequenceMeta = $resourceSequenceMeta;
+        $this->metaResource = $metaResource;
         $this->sequenceFactory = $sequenceFactory;
     }
 
     /**
-     * Returns sequence for given entityType and store
+     * Retrieve sequence for given entityType and store
      *
      * @param Manager $subject
      * @param callable $proceed
@@ -59,11 +57,13 @@ class ManagerPlugin
         $entityType,
         $storeId
     ) {
-        $meta = $this->resourceSequenceMeta->loadByEntityTypeAndStore($entityType, $storeId);
-        $pattern = $meta->getActiveProfile()->getPattern();
+        /** @var \Magento\SalesSequence\Model\Meta $meta */
+        $meta = $this->metaResource->loadByEntityTypeAndStore($entityType, $storeId);
+        /** @var \Magento\SalesSequence\Model\Profile $profile */
+        $profile = $meta->getData('active_profile');
         return $this->sequenceFactory->create([
             'meta' => $meta,
-            'pattern' => $pattern ?: Sequence::DEFAULT_PATTERN
+            'pattern' => $profile->getData('pattern') ?: Sequence::DEFAULT_PATTERN
         ]);
     }
 }

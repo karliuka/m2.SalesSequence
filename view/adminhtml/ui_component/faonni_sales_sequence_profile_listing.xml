@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Karliuka Vitalii(karliuka.vitalii@gmail.com)
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_listing_data_source
+            </item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>faonni_sales_sequence_profile_columns</spinner>
+        <deps>
+            <dep>
+                faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_listing_data_source
+            </dep>
+        </deps>
+    </settings>
+    <dataSource name="faonni_sales_sequence_profile_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">profile_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Faonni_SalesSequence::profile</aclResource>
+        <dataProvider class="Faonni\SalesSequence\Ui\DataProvider\Profile\ListingDataProvider" name="faonni_sales_sequence_profile_listing_data_source">
+            <settings>
+                <requestFieldName>profile_id</requestFieldName>
+                <primaryFieldName>profile_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <exportButton name="export_button"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="faonni_sales_sequence_profile_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">
+                        faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_listing.faonni_sales_sequence_profile_columns.actions
+                    </item>
+                    <item name="target" xsi:type="string">applyAction</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">edit</item>
+                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids" sortOrder="10">
+            <settings>
+                <indexField>profile_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="profile_id" sortOrder="20">
+            <settings>
+                <label translate="true">Profile ID</label>
+            </settings>
+        </column>
+        <column name="entity_type" component="Magento_Ui/js/grid/columns/select" sortOrder="30">
+            <settings>
+                <label translate="true">Entity Type</label>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <options class="Faonni\SalesSequence\Model\System\Config\Source\EntityType"/>
+            </settings>
+        </column>
+        <column name="store_id" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+            <settings>
+                <label translate="true">Store View</label>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <options class="Faonni\SalesSequence\Model\System\Config\Source\Stores"/>
+            </settings>
+        </column>
+        <column name="prefix" sortOrder="50">
+            <settings>
+                <label translate="true">Prefix</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="suffix" sortOrder="60">
+            <settings>
+                <label translate="true">Suffix</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="start_value" sortOrder="70">
+            <settings>
+                <label translate="true">Start Value</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="max_value" sortOrder="80">
+            <settings>
+                <label translate="true">Max Value</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="warning_value" sortOrder="90">
+            <settings>
+                <label translate="true">Warning Value</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="step" sortOrder="100">
+            <settings>
+                <label translate="true">Step</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="pattern" sortOrder="110">
+            <settings>
+                <label translate="true">Pattern</label>
+            </settings>
+        </column>
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select" sortOrder="200">
+            <settings>
+                <label translate="true">Status</label>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <options class="Faonni\SalesSequence\Model\System\Config\Source\Status"/>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Magento\Backend\Ui\Component\Listing\Column\EditAction" sortOrder="210">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">faonni_sales_sequence/profile/edit</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>profile_id</indexField>
+                <visible>false</visible>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>
