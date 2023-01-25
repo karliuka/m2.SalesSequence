@@ -51,10 +51,10 @@ class StatusValidator implements ValidatorInterface
     public function validate(ProfileInterface $profile): ValidationResult
     {
         $errors = [];
-        $units = array_column($this->statusSource->toOptionArray(), 'value');
-        $unit = $profile->getStatus();
+        $statuses = array_column($this->statusSource->toOptionArray(), 'value');
+        $status = $profile->getIsActive();
 
-        if (!in_array($unit, $units)) {
+        if (!in_array($status, $statuses)) {
             $errors[] = __('Value for status contains incorrect value.');
         }
         return $this->validationResultFactory->create(['errors' => $errors]);
