@@ -14,7 +14,13 @@
             <argument name="aclResource" xsi:type="string">Faonni_SalesSequence::profile</argument>
         </arguments>
     </virtualType>
-    <!-- data provider configurations -->
+    <!-- listing data provider configurations -->
+    <virtualType name="FaonniSalesSequenceProfileListingModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool"/>
+    <type name="Faonni\SalesSequence\Ui\DataProvider\Profile\ListingDataProvider">
+        <arguments>
+            <argument name="modifierPool" xsi:type="object">FaonniSalesSequenceProfileListingModifierPool</argument>
+        </arguments>
+    </type>
     <type name="Magento\Framework\EntityManager\MapperPool">
         <arguments>
             <argument name="mappers" xsi:type="array">
@@ -31,4 +37,11 @@
             </argument>
         </arguments>
     </virtualType>
+    <!-- form data provider configurations -->
+    <virtualType name="FaonniSalesSequenceProfileFormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool"/>
+    <type name="Faonni\SalesSequence\Ui\DataProvider\Profile\FormDataProvider">
+        <arguments>
+            <argument name="modifierPool" xsi:type="object">FaonniSalesSequenceProfileFormModifierPool</argument>
+        </arguments>
+    </type>
 </config>
