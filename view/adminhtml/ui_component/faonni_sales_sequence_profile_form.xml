@@ -45,6 +45,7 @@
             </submitUrl>
             <validateUrl path="*/*/validate"/>
         </settings>
+        <aclResource>Faonni_SalesSequence::profile</aclResource>
         <dataProvider class="Faonni\SalesSequence\Ui\DataProvider\Profile\FormDataProvider" name="faonni_sales_sequence_profile_form_data_source">
             <settings>
                 <requestFieldName>profile_id</requestFieldName>

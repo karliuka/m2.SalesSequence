@@ -26,7 +26,7 @@ class Validate extends Action implements HttpPostActionInterface
     /**
      * Authorization level of a basic admin session
      */
-    const ADMIN_RESOURCE = 'Faonni_SalesSequence::profile';
+    const ADMIN_RESOURCE = 'Faonni_SalesSequence::profile_edit';
 
     /**
      * @var ProfileInterfaceFactory

@@ -11,7 +11,7 @@
     <virtualType name="FaonniSalesSequenceProfileSaveButton" type="Faonni\SalesSequence\Ui\Component\Control\SaveSplitButton">
         <arguments>
             <argument name="targetName" xsi:type="string">faonni_sales_sequence_profile_form.faonni_sales_sequence_profile_form</argument>
-            <argument name="aclResource" xsi:type="string">Faonni_SalesSequence::profile</argument>
+            <argument name="aclResource" xsi:type="string">Faonni_SalesSequence::profile_edit</argument>
         </arguments>
     </virtualType>
     <!-- listing data provider configurations -->
