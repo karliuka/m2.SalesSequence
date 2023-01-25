@@ -72,9 +72,9 @@ class Edit extends Action implements HttpGetActionInterface
             $profile = $this->getProfileById->execute($profileId);
 
             $title = $result->getConfig()->getTitle();
-            $title->prepend(
-                (string)__('Sequence Profiles')
-            );
+
+            $title->prepend((string)__('Stores'));
+            $title->prepend((string)__('Sequence Profiles'));
 
             $title->prepend(
                 $profile->getEntityType()

@@ -34,6 +34,8 @@ class Index extends Action implements HttpGetActionInterface
         $result->setActiveMenu('Faonni_SalesSequence::profile');
 
         $title = $result->getConfig()->getTitle();
+
+        $title->prepend((string)__('Stores'));
         $title->prepend((string)__('Sequence Profiles'));
 
         return $result;
