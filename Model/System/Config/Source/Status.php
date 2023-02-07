@@ -17,12 +17,12 @@ class Status implements OptionSourceInterface
     /**
      * Value which equal enable for status dropdown
      */
-    const ENABLE_VALUE = 1;
+    private const ENABLE_VALUE = 1;
 
     /**
      * Value which equal disable for status dropdown
      */
-    const DISABLE_VALUE = 0;
+    private const DISABLE_VALUE = 0;
 
     /**
      * Retrieve options as array

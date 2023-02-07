@@ -13,7 +13,7 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Faonni\SalesSequence\Api\Data\ProfileInterface;
 
 /**
- * Profile resource
+ * Sequence profile resource
  */
 class Profile extends AbstractDb
 {

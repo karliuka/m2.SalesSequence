@@ -17,57 +17,57 @@ interface ProfileInterface
     /**
      * Profile id field name
      */
-    const PROFILE_ID = 'profile_id';
+    public const PROFILE_ID = 'profile_id';
 
     /**
      * Entity type field name
      */
-    const ENTITY_TYPE = 'entity_type';
+    public const ENTITY_TYPE = 'entity_type';
 
     /**
      * Store id field name
      */
-    const STORE_ID = 'store_id';
+    public const STORE_ID = 'store_id';
 
     /**
      * Prefix field name
      */
-    const PREFIX = 'prefix';
+    public const PREFIX = 'prefix';
 
     /**
      * Suffix field name
      */
-    const SUFFIX = 'suffix';
+    public const SUFFIX = 'suffix';
 
     /**
      * Start value field name
      */
-    const START_VALUE = 'start_value';
+    public const START_VALUE = 'start_value';
 
     /**
      * Max value field name
      */
-    const MAX_VALUE = 'max_value';
+    public const MAX_VALUE = 'max_value';
 
     /**
      * Warning value field name
      */
-    const WARNING_VALUE = 'warning_value';
+    public const WARNING_VALUE = 'warning_value';
 
     /**
      * Step field name
      */
-    const STEP = 'step';
+    public const STEP = 'step';
 
     /**
      * Pattern field name
      */
-    const PATTERN = 'pattern';
+    public const PATTERN = 'pattern';
 
     /**
      * Status field name
      */
-    const STATUS = 'is_active';
+    public const STATUS = 'is_active';
 
     /**
      * Retrieve profile id
