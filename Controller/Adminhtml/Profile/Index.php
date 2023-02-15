@@ -20,7 +20,7 @@ class Index extends Action implements HttpGetActionInterface
     /**
      * Authorization level of a basic admin session
      */
-    const ADMIN_RESOURCE = 'Faonni_SalesSequence::profile';
+    public const ADMIN_RESOURCE = 'Faonni_SalesSequence::profile';
 
     /**
      * Profile list
