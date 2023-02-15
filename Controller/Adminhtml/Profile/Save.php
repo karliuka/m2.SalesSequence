@@ -26,7 +26,7 @@ class Save extends Action implements HttpPostActionInterface
     /**
      * Authorization level of a basic admin session
      */
-    const ADMIN_RESOURCE = 'Faonni_SalesSequence::profile_edit';
+    public const ADMIN_RESOURCE = 'Faonni_SalesSequence::profile_edit';
 
     /**
      * @var GetProfileByIdInterface

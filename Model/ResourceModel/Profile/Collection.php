@@ -12,7 +12,7 @@ use Faonni\SalesSequence\Model\ResourceModel\Profile as ProfileResource;
 use Faonni\SalesSequence\Model\Profile;
 
 /**
- * Profile collection
+ * Sales sequence profile collection
  */
 class Collection extends AbstractCollection
 {
@@ -31,7 +31,7 @@ class Collection extends AbstractCollection
     protected $_eventObject = 'collection';
 
     /**
-     * Id field name
+     * Primary id field name
      *
      * @var string
      */

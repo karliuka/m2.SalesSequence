@@ -13,12 +13,12 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Faonni\SalesSequence\Api\Data\ProfileInterface;
 
 /**
- * Sequence profile resource
+ * Sales sequence profile resource
  */
 class Profile extends AbstractDb
 {
     /**
-     * Event prefix
+     * Prefix of model events names
      *
      * @var string
      */
